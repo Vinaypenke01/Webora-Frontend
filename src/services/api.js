@@ -101,6 +101,31 @@ const api = {
         return { success: true };
     },
 
+    // ================= ADMIN AUTH =================
+
+    createAdminStep1: async (data) => {
+        console.log('📡 API → createAdminStep1', data);
+
+        const response = await apiClient.post(
+            '/auth/create-admin-step1/',
+            data
+        );
+
+        return response.data;
+    },
+
+    createAdminStep2: async (data) => {
+        console.log('📡 API → createAdminStep2', data);
+
+        const response = await apiClient.post(
+            '/auth/create-admin-step2/',
+            data
+        );
+
+        return response.data;
+    },
+
+
     getCurrentUser: () => {
         const user = localStorage.getItem(STORAGE_KEYS.USER);
         return user ? JSON.parse(user) : null;
