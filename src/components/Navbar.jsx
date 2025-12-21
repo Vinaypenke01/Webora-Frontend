@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
@@ -8,7 +8,7 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
 
     // Handle scroll effect
-    useState(() => {
+    useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };

@@ -16,7 +16,7 @@ import Contact from '../pages/public/Contact';
 import Pricing from '../pages/public/Pricing';
 import Blog from '../pages/public/Blog';
 import BlogDetail from '../pages/public/BlogDetail';
-
+import CreateAdmin from '../pages/CreateAdmin';
 // Admin Pages
 import Login from '../pages/admin/Login';
 import Dashboard from '../pages/admin/Dashboard';
@@ -53,6 +53,7 @@ const AppRoutes = () => {
                     <Route path="pricing" element={<Pricing />} />
                     <Route path="blog" element={<Blog />} />
                     <Route path="blog/:slug" element={<BlogDetail />} />
+                    <Route path="create-admin" element={<CreateAdmin />} />
                 </Route>
 
                 {/* Admin Login (not protected) */}

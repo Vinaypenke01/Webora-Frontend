@@ -52,11 +52,15 @@ const ManageProjects = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: type === 'checkbox' ? checked : value,
-        }));
+        const { name, value, type, checked, files } = e.target;
+        if (type === 'file') {
+            setFormData(prev => ({ ...prev, [name]: files[0] }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: type === 'checkbox' ? checked : value,
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -64,7 +68,9 @@ const ManageProjects = () => {
         try {
             const projectData = {
                 ...formData,
-                techStack: formData.techStack.split(',').map(tech => tech.trim()),
+                techStack: Array.isArray(formData.techStack)
+                    ? formData.techStack
+                    : formData.techStack.split(',').map(tech => tech.trim()).filter(Boolean),
             };
 
             if (editingProject) {
@@ -179,8 +185,16 @@ const ManageProjects = () => {
                         <textarea name="challenge" value={formData.challenge} onChange={handleChange} className="input-field" rows={2} />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-2">Image URL *</label>
-                        <input name="image" value={formData.image} onChange={handleChange} className="input-field" required />
+                        <label className="block text-sm font-medium mb-2">Project Image *</label>
+                        <input
+                            type="file"
+                            name="image"
+                            onChange={handleChange}
+                            className="input-field"
+                            accept="image/*"
+                            required={!editingProject}
+                        />
+                        {editingProject && <p className="text-xs text-gray-500 mt-1">Leave empty to keep current image</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium mb-2">Tech Stack (comma-separated) *</label>

@@ -119,6 +119,12 @@ const Footer = () => {
                             © {new Date().getFullYear()} {settings.companyName || 'Webora Solutions'}. All rights reserved.
                         </p>
                         <div className="flex space-x-6">
+                            <Link to="/create-admin" className="text-gray-200 hover:text-white text-sm transition-colors">
+                                Create Admin
+                            </Link>
+                            <Link to="/admin/login" className="text-gray-200 hover:text-white text-sm transition-colors">
+                                Admin Login
+                            </Link>
                             <Link to="#" className="text-gray-200 hover:text-white text-sm transition-colors">
                                 Privacy Policy
                             </Link>

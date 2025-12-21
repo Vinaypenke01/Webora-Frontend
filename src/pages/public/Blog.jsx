@@ -6,7 +6,7 @@ import Card from '../../components/ui/Card';
 import Pagination from '../../components/ui/Pagination';
 
 const Blog = () => {
-    const { blogs } = useApp();
+    const { blogs, loading } = useApp();
     const [currentPage, setCurrentPage] = useState(1);
     const blogsPerPage = 6;
 
@@ -15,6 +15,10 @@ const Blog = () => {
     const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
     const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
     const featuredBlog = blogs[0];
+
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center">Loading Blog...</div>;
+    }
 
     return (
         <div>
@@ -35,7 +39,7 @@ const Blog = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2">
                                 <div className="aspect-video md:aspect-square overflow-hidden">
                                     <img
-                                        src={featuredBlog.featuredImage}
+                                        src={featuredBlog.featuredImage || 'https://via.placeholder.com/800x450?text=Blog+Post'}
                                         alt={featuredBlog.title}
                                         className="w-full h-full object-cover"
                                     />
@@ -67,7 +71,7 @@ const Blog = () => {
                                     <Card key={blog.id} className="overflow-hidden p-0">
                                         <div className="aspect-video overflow-hidden">
                                             <img
-                                                src={blog.featuredImage}
+                                                src={blog.featuredImage || 'https://via.placeholder.com/400x250?text=Blog+Post'}
                                                 alt={blog.title}
                                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                                             />

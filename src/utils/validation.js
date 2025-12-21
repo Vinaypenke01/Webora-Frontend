@@ -44,6 +44,10 @@ export const validateContactForm = (formData) => {
         errors.email = 'Invalid email format';
     }
 
+    if (!validateRequired(formData.subject)) {
+        errors.subject = 'Subject is required';
+    }
+
     if (formData.phone && !validatePhone(formData.phone)) {
         errors.phone = 'Invalid phone number';
     }

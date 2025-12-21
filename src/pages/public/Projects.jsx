@@ -7,7 +7,7 @@ import Card from '../../components/ui/Card';
 import Pagination from '../../components/ui/Pagination';
 
 const Projects = () => {
-    const { projects } = useApp();
+    const { projects, loading } = useApp();
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +17,8 @@ const Projects = () => {
 
     // Filter projects
     const filteredProjects = projects.filter(project => {
-        const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
+        const matchesCategory = selectedCategory === 'all' ||
+            project.category?.toLowerCase() === selectedCategory.toLowerCase();
         const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             project.description.toLowerCase().includes(searchTerm.toLowerCase());
         return matchesCategory && matchesSearch;
@@ -38,6 +39,10 @@ const Projects = () => {
         setSearchTerm(e.target.value);
         setCurrentPage(1);
     };
+
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center">Loading Projects...</div>;
+    }
 
     return (
         <div>
@@ -61,8 +66,8 @@ const Projects = () => {
                                     key={category}
                                     onClick={() => handleCategoryChange(category)}
                                     className={`px-6 py-3 rounded-lg font-semibold transition-all ${selectedCategory === category
-                                            ? 'bg-gradient-to-r from-primary to-secondary text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-gradient-to-r from-primary to-secondary text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -91,7 +96,7 @@ const Projects = () => {
                                     <Card key={project.id} className="overflow-hidden p-0">
                                         <div className="aspect-video overflow-hidden">
                                             <img
-                                                src={project.image}
+                                                src={project.image || 'https://via.placeholder.com/600x400?text=Project+Image'}
                                                 alt={project.title}
                                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                                             />

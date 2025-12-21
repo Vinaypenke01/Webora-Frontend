@@ -110,12 +110,15 @@ const ProjectDetail = () => {
                                         <div>
                                             <p className="text-sm text-gray-600 mb-2">Technologies</p>
                                             <div className="flex flex-wrap gap-2">
-                                                {project.techStack.map((tech, index) => (
+                                                {(Array.isArray(project.techStack)
+                                                    ? project.techStack
+                                                    : (typeof project.techStack === 'string' ? project.techStack.split(',') : [])
+                                                ).map((tech, index) => (
                                                     <span
                                                         key={index}
                                                         className="px-3 py-1 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-full text-sm font-medium"
                                                     >
-                                                        {tech}
+                                                        {tech.trim()}
                                                     </span>
                                                 ))}
                                             </div>

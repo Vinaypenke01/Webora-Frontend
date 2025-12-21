@@ -9,6 +9,7 @@ const ContactForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        subject: '',
         phone: '',
         message: '',
     });
@@ -39,7 +40,7 @@ const ContactForm = () => {
         try {
             await addMessage(formData);
             setSuccess(true);
-            setFormData({ name: '', email: '', phone: '', message: '' });
+            setFormData({ name: '', email: '', subject: '', phone: '', message: '' });
             setTimeout(() => setSuccess(false), 5000);
         } catch (error) {
             setErrors({ submit: 'Failed to send message. Please try again.' });
@@ -100,6 +101,23 @@ const ContactForm = () => {
                     placeholder="your.email@example.com"
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+            </div>
+
+            {/* Subject */}
+            <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    Subject *
+                </label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className={`input-field ${errors.subject ? 'border-red-500' : ''}`}
+                    placeholder="Project Inquiry, Support, etc."
+                />
+                {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
             </div>
 
             {/* Phone */}

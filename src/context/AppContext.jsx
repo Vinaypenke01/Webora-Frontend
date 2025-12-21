@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import api, { initializeStorage } from '../services/api';
+import api from '../services/api';
 import * as mockData from '../data/mockData';
 
 const AppContext = createContext();
@@ -27,22 +27,25 @@ export const AppProvider = ({ children }) => {
     const initializeData = async () => {
         try {
             // Initialize storage with mock data
-            initializeStorage(mockData);
+            api.initializeStorage(mockData);
 
             // Load all data
+            const token = localStorage.getItem('webora_auth_token');
             const [projectsData, servicesData, blogsData, messagesData, settingsData] = await Promise.all([
                 api.getProjects(),
                 api.getServices(),
                 api.getBlogs(),
-                api.getMessages(),
+                token ? api.getMessages().catch(() => null) : Promise.resolve(null),
                 api.getSettings(),
             ]);
 
             setProjects(projectsData);
             setServices(servicesData);
             setBlogs(blogsData);
-            setMessages(messagesData);
             setSettings(settingsData);
+
+            // Only set messages if request succeeded
+            if (messagesData) setMessages(messagesData);
         } catch (error) {
             console.error('Error loading data:', error);
         } finally {
