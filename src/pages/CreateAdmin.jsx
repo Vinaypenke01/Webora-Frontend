@@ -84,7 +84,7 @@ const CreateAdmin = () => {
 
       if (res.success) {
         setSuccess('Admin account created successfully!');
-        setTimeout(() => navigate('/admin-login'), 2000);
+        setTimeout(() => navigate('/admin/login'), 2000);
       }
     } catch (err) {
       console.error('❌ Step 2 Error:', err);
