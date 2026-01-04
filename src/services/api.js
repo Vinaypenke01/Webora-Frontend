@@ -20,7 +20,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
-        if (token) {
+        if (token && !config.skipAuth) {
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
@@ -133,12 +133,12 @@ const api = {
 
     // Projects APIs
     getProjects: async () => {
-        const response = await apiClient.get('/projects/');
+        const response = await apiClient.get('/projects/', { skipAuth: true });
         return response.data;
     },
 
     getProjectById: async (id) => {
-        const response = await apiClient.get(`/projects/${id}/`);
+        const response = await apiClient.get(`/projects/${id}/`, { skipAuth: true });
         return response.data;
     },
 
@@ -192,12 +192,12 @@ const api = {
 
     // Services APIs
     getServices: async () => {
-        const response = await apiClient.get('/services/');
+        const response = await apiClient.get('/services/', { skipAuth: true });
         return response.data;
     },
 
     getServiceById: async (id) => {
-        const response = await apiClient.get(`/services/${id}/`);
+        const response = await apiClient.get(`/services/${id}/`, { skipAuth: true });
         return response.data;
     },
 
@@ -218,7 +218,7 @@ const api = {
 
     // Blogs APIs
     getBlogs: async () => {
-        const response = await apiClient.get('/blogs/');
+        const response = await apiClient.get('/blogs/', { skipAuth: true });
         return response.data;
     },
 
@@ -257,12 +257,12 @@ const api = {
         // But I'm in "Frontend Integration" task. I can't change backend right now easily without switching context.
         // Let's assume standard ViewSet behavior for now, but be aware.
 
-        const response = await apiClient.get(`/blogs/${id}/`);
+        const response = await apiClient.get(`/blogs/${id}/`, { skipAuth: true });
         return response.data;
     },
 
     getBlogBySlug: async (slug) => {
-        const response = await apiClient.get(`/blogs/slug/${slug}/`); // My custom endpoint?
+        const response = await apiClient.get(`/blogs/slug/${slug}/`, { skipAuth: true }); // My custom endpoint?
         // Wait, ViewSet with lookup_field='slug' means `/blogs/{slug}/` IS the standard retrieve.
         // My backend urls.py included the router.
         // If lookup_field='slug', then `blogs/{slug}/` call `retrieve`.
@@ -357,7 +357,7 @@ const api = {
 
     // Settings APIs
     getSettings: async () => {
-        const response = await apiClient.get('/settings/');
+        const response = await apiClient.get('/settings/', { skipAuth: true });
         return response.data;
     },
 
