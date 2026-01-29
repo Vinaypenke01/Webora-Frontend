@@ -1,6 +1,6 @@
-# Webora Solutions - Frontend
+# DigitalCore - Frontend
 
-Modern, responsive frontend for the Webora Solutions digital agency, built with React, Vite, and Tailwind CSS. Integrated with a Django REST Framework backend.
+Modern, responsive frontend for DigitalCore digital agency, built with React, Vite, and Tailwind CSS. Integrated with a Django REST Framework backend.
 
 ## 🚀 Technologies
 
@@ -74,7 +74,7 @@ src/
 
 ## 🔗 Backend Integration
 
-This frontend is designed to work with the [Webora Backend](https://github.com/Vinaypenke01/WeboraBackend).
+This frontend is designed to work with the [DigitalCore Backend](https://github.com/Vinaypenke01/WeboraBackend).
 
 -   **API Service**: `src/services/api.js` handles all HTTP requests.
 -   **Authentication**: JWT-based auth via `AuthContext`. Tokens are stored in `localStorage`.

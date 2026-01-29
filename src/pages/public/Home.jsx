@@ -93,7 +93,7 @@ const Home = () => {
             <section className="section-padding bg-gray-50">
                 <div className="container-custom">
                     <div className="text-center mb-12">
-                        <h2 className="mb-4">Why Choose Webora?</h2>
+                        <h2 className="mb-4">Why Choose DigitalCore?</h2>
                         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                             We deliver exceptional results through expertise, innovation, and dedication
                         </p>

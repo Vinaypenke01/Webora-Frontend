@@ -42,7 +42,7 @@ const Navbar = () => {
                     <Link to="/" className="flex items-center h-[64px] w-[148px]">
                         <img
                             src={logo}
-                            alt="Webora Solutions"
+                            alt="DigitalCore"
                             className="max-h-full max-w-full object-contain"
                         />
                     </Link>

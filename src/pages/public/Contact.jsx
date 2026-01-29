@@ -105,7 +105,7 @@ const Contact = () => {
                             allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
-                            title="Webora Solutions Location"
+                            title="DigitalCore Location"
                         ></iframe>
                     </div>
                 </div>

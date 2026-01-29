@@ -51,7 +51,7 @@ const Login = () => {
                 </button>
 
                 <div className="text-center mb-8 mt-4">
-                    <img src={logo} alt="Webora Solutions" className="h-16 mx-auto mb-4" />
+                    <img src={logo} alt="DigitalCore" className="h-16 mx-auto mb-4" />
                     <h2 className="text-3xl font-bold text-gray-900">Admin Login</h2>
                     <p className="text-gray-600 mt-2">Sign in to access the admin panel</p>
                 </div>
@@ -78,7 +78,7 @@ const Login = () => {
                             value={formData.email}
                             onChange={handleChange}
                             className="input-field"
-                            placeholder="admin@webora.com"
+                            placeholder="admin@digitalcore.com"
                             required
                         />
                     </div>

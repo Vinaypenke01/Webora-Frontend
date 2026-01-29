@@ -9,7 +9,7 @@ const About = () => {
     return (
         <div>
             <PageHeader
-                title="About Webora Solutions"
+                title="About DigitalCore"
                 subtitle="Learn about our story, mission, and the team behind your digital success"
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
@@ -23,7 +23,7 @@ const About = () => {
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-center mb-8">Our Story</h2>
                         <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                            {settings.about?.story || 'Founded in 2020, Webora Solutions has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.'}
+                            {settings.about?.story || 'Founded in 2020, DigitalCore has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.'}
                         </p>
                         <p className="text-lg text-gray-700 leading-relaxed">
                             Our passion for web development and commitment to client success drives everything we do. We believe in building long-term partnerships with our clients, helping them achieve their business goals through innovative digital solutions.

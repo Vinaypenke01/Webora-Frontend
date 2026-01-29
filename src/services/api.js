@@ -3,9 +3,9 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
 
 const STORAGE_KEYS = {
-    AUTH_TOKEN: 'webora_auth_token',
-    USER: 'webora_user',
-    REFRESH_TOKEN: 'webora_refresh_token',
+    AUTH_TOKEN: 'digitalcore_auth_token',
+    USER: 'digitalcore_user',
+    REFRESH_TOKEN: 'digitalcore_refresh_token',
 };
 
 // Create axios instance

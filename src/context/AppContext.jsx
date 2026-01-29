@@ -30,7 +30,7 @@ export const AppProvider = ({ children }) => {
             api.initializeStorage(mockData);
 
             // Load all data
-            const token = localStorage.getItem('webora_auth_token');
+            const token = localStorage.getItem('digitalcore_auth_token');
             const [projectsData, servicesData, blogsData, messagesData, settingsData] = await Promise.all([
                 api.getProjects(),
                 api.getServices(),

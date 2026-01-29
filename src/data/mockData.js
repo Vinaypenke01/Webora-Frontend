@@ -1,4 +1,4 @@
-// Mock data for Webora Solutions
+// Mock data for DigitalCore
 
 export const initialProjects = [
     {
@@ -203,7 +203,7 @@ export const initialTestimonials = [
         name: "Sarah Williams",
         company: "TechStart Inc.",
         role: "CEO",
-        content: "Webora Solutions transformed our online presence. Our new website is beautiful, fast, and has increased our conversions by 150%.",
+        content: "DigitalCore transformed our online presence. Our new website is beautiful, fast, and has increased our conversions by 150%.",
         rating: 5,
         avatar: "https://i.pravatar.cc/150?img=1",
     },
@@ -212,7 +212,7 @@ export const initialTestimonials = [
         name: "David Chen",
         company: "FastGrow Marketing",
         role: "Marketing Director",
-        content: "The team at Webora is incredibly professional and talented. They delivered exactly what we needed, on time and within budget.",
+        content: "The team at DigitalCore is incredibly professional and talented. They delivered exactly what we needed, on time and within budget.",
         rating: 5,
         avatar: "https://i.pravatar.cc/150?img=13",
     },
@@ -330,9 +330,9 @@ export const pricingPlans = [
 ];
 
 export const siteSettings = {
-    companyName: "Webora Solutions",
+    companyName: "DigitalCore",
     tagline: "Building Your Digital Presence",
-    email: "info@weborasolutions.com",
+    email: "info@digitalcore.com",
     phone: "+1 (555) 123-4567",
     address: "123 Tech Street, San Francisco, CA 94102",
     social: {
@@ -349,7 +349,7 @@ export const siteSettings = {
         cta2: "View Our Work",
     },
     about: {
-        story: "Founded in 2020, Webora Solutions has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.",
+        story: "Founded in 2020, DigitalCore has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.",
         mission: "To empower businesses with innovative web solutions that drive growth and success.",
         vision: "To be the leading web development agency known for excellence, innovation, and client satisfaction.",
     },

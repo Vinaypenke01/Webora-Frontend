@@ -26,7 +26,7 @@ const AdminLayout = () => {
             {/* Sidebar */}
             <aside className="w-64 bg-gradient-to-b from-primary to-secondary text-white flex-shrink-0">
                 <div className="p-6">
-                    <img src={logo} alt="Webora Solutions" className="h-14 mb-8" />
+                    <img src={logo} alt="DigitalCore" className="h-14 mb-8" />
 
                     <nav className="space-y-2">
                         {menuItems.map((item) => (
