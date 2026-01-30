@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin/
+Disallow: /create-admin
+
+# Sitemap location
+Sitemap: https://digitalcore.co.in/sitemap.xml
