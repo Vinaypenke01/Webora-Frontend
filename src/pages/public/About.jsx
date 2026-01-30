@@ -2,12 +2,32 @@ import PageHeader from '../../components/ui/PageHeader';
 import { useApp } from '../../context/AppContext';
 import { FaCheckCircle } from 'react-icons/fa';
 import Card from '../../components/ui/Card';
+import { SEO } from '../../hooks/useSEO';
 
 const About = () => {
     const { settings, teamMembers } = useApp();
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "DigitalCore",
+            "description": "Professional digital agency providing web development, mobile apps, and digital marketing services",
+            "foundingDate": "2020",
+            "url": "https://digitalcore.co.in"
+        }
+    };
+
     return (
         <div>
+            <SEO
+                title="About DigitalCore - Leading Digital Agency | Our Story & Team"
+                description="Learn about DigitalCore's mission to empower businesses with innovative digital solutions. Meet our expert team of developers and designers dedicated to your success."
+                keywords="about DigitalCore, digital agency team, web development company, our story, company mission, expert developers"
+                canonicalUrl="https://digitalcore.co.in/about"
+                structuredData={structuredData}
+            />
             <PageHeader
                 title="About DigitalCore"
                 subtitle="Learn about our story, mission, and the team behind your digital success"

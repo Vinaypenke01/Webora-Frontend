@@ -4,13 +4,36 @@ import * as Icons from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
+import { SEO } from '../../hooks/useSEO';
 
 const Services = () => {
     const { services } = useApp();
     const activeServices = services.filter(s => s.active);
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": activeServices.map((service, index) => ({
+            "@type": "Service",
+            "position": index + 1,
+            "name": service.title,
+            "description": service.shortDescription,
+            "provider": {
+                "@type": "Organization",
+                "name": "DigitalCore"
+            }
+        }))
+    };
+
     return (
         <div>
+            <SEO
+                title="Our Services - Web Development, Mobile Apps & Digital Solutions | DigitalCore"
+                description="Explore DigitalCore's comprehensive digital services including custom web development, mobile app development, e-commerce solutions, UI/UX design, and cloud deployment. Professional solutions tailored to your business needs."
+                keywords="web development services, mobile app development, e-commerce development, UI/UX design services, cloud solutions, API development, custom software, React development services"
+                canonicalUrl="https://digitalcore.co.in/services"
+                structuredData={structuredData}
+            />
             <PageHeader
                 title="Our Services"
                 subtitle="Comprehensive web development solutions tailored to your needs"

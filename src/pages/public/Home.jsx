@@ -4,14 +4,38 @@ import { FaArrowRight, FaCheckCircle, FaStar } from 'react-icons/fa';
 import * as Icons from 'react-icons/fa';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
+import { SEO } from '../../hooks/useSEO';
 
 const Home = () => {
     const { projects, services, testimonials, techStack, settings } = useApp();
 
     const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 
+    // Structured data for the home page
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DigitalCore",
+        "url": "https://digitalcore.co.in",
+        "description": "Leading digital agency in India providing professional web development, mobile apps, cloud solutions, and digital marketing services.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://digitalcore.co.in/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    };
+
+
     return (
         <div>
+            <SEO
+                title="DigitalCore - Professional Web Development & Digital Marketing Services in India"
+                description="DigitalCore is India's leading digital agency specializing in custom web development, mobile app development, cloud solutions, and digital marketing. Transform your business with cutting-edge technology and expert solutions."
+                keywords="web development India, digital agency, mobile app development, cloud solutions, digital marketing services, custom software development, React development, Node.js development, SEO services"
+                canonicalUrl="https://digitalcore.co.in/"
+                structuredData={structuredData}
+            />
+
             {/* Hero Section */}
             <section className="relative hero-gradient text-white section-padding pt-32 overflow-hidden">
                 {/* Animated background elements */}

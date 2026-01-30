@@ -3,12 +3,50 @@ import { useApp } from '../../context/AppContext';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
 import ContactForm from '../../components/forms/ContactForm';
+import { SEO } from '../../hooks/useSEO';
 
 const Contact = () => {
     const { settings } = useApp();
 
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "DigitalCore",
+        "image": "https://digitalcore.co.in/logo.png",
+        "@id": "https://digitalcore.co.in",
+        "url": "https://digitalcore.co.in",
+        "telephone": settings.phone,
+        "email": settings.email,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": settings.address,
+            "addressCountry": "IN"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "10:00",
+                "closes": "16:00"
+            }
+        ]
+    };
+
     return (
         <div>
+            <SEO
+                title="Contact Us - Get in Touch with DigitalCore | Free Consultation"
+                description="Contact DigitalCore for professional web development and digital marketing services. Get a free consultation and quote. We're here to help transform your business online. Available Monday-Saturday."
+                keywords="contact DigitalCore, web development inquiry, free consultation, get a quote, digital agency contact, web development company contact"
+                canonicalUrl="https://digitalcore.co.in/contact"
+                structuredData={structuredData}
+            />
             <PageHeader
                 title="Get In Touch"
                 subtitle="Let's discuss your project and bring your ideas to life"
