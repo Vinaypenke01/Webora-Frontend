@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useApp } from '../../context/AppContext';
-import { FaArrowRight, FaCheckCircle, FaStar } from 'react-icons/fa';
+import { FaStar, FaArrowRight, FaCode } from 'react-icons/fa';
 import * as Icons from 'react-icons/fa';
-import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import { SEO } from '../../hooks/useSEO';
+import Card from '../../components/ui/Card';
 import FAQ from '../../components/FAQ';
-import { seoKeywords } from '../../utils/seo-keywords';
+import { useApp } from '../../context/AppContext';
+import SEO from '../../components/SEO';
 import { generateBreadcrumbSchema, generateAggregateRatingSchema } from '../../utils/schema-generator';
+import TechAutoSlider from '../../components/ui/TechAutoSlider';
 
 const Home = () => {
     const { projects, services, testimonials, technologies, settings } = useApp();
@@ -277,30 +277,16 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Tech Stack */}
-            <section className="section-padding bg-white">
-                <div className="container-custom">
-                    <div className="text-center mb-12">
-                        <h2 className="mb-4">Technologies We Use</h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Building with the best and most modern tools
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
-                        {activeTechnologies.map((tech, index) => {
-                            const IconComponent = Icons[tech.icon] || Icons.FaCode;
-                            return (
-                                <div key={index} className="text-center group">
-                                    <div className="w-20 h-20 mx-auto mb-3 flex items-center justify-center rounded-xl bg-gray-50 group-hover:bg-gray-100 transition-colors">
-                                        <IconComponent className="text-4xl" style={{ color: tech.color }} />
-                                    </div>
-                                    <p className="text-sm font-medium text-gray-700">{tech.name}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
+            {/* Tech Stack - Auto Slider */}
+            <section className="relative overflow-hidden">
+                <div className="text-center py-12 bg-gradient-to-b from-white to-gray-50">
+                    <h2 className="mb-4">Technologies We Use</h2>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                        Building with the best and most modern tools
+                    </p>
                 </div>
+
+                <TechAutoSlider technologies={technologies} />
             </section>
 
             {/* FAQ Section */}
