@@ -25,6 +25,9 @@ import ManageServices from '../pages/admin/ManageServices';
 import ManageBlogs from '../pages/admin/ManageBlogs';
 import ManageMessages from '../pages/admin/ManageMessages';
 import SiteSettings from '../pages/admin/SiteSettings';
+import ManagePricing from '../pages/admin/ManagePricing';
+import ManageTechnologies from '../pages/admin/ManageTechnologies';
+import ManageTestimonials from '../pages/admin/ManageTestimonials';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -75,6 +78,9 @@ const AppRoutes = () => {
                     <Route path="blogs" element={<ManageBlogs />} />
                     <Route path="messages" element={<ManageMessages />} />
                     <Route path="settings" element={<SiteSettings />} />
+                    <Route path="pricing" element={<ManagePricing />} />
+                    <Route path="technologies" element={<ManageTechnologies />} />
+                    <Route path="testimonials" element={<ManageTestimonials />} />
                 </Route>
 
                 {/* 404 */}

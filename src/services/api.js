@@ -365,6 +365,84 @@ const api = {
         const response = await apiClient.put('/settings/', updates);
         return response.data;
     },
+
+    // Pricing Plans APIs
+    getPricingPlans: async () => {
+        const response = await apiClient.get('/pricing/', { skipAuth: true });
+        return response.data;
+    },
+
+    getPricingPlanById: async (id) => {
+        const response = await apiClient.get(`/pricing/${id}/`, { skipAuth: true });
+        return response.data;
+    },
+
+    createPricingPlan: async (plan) => {
+        const response = await apiClient.post('/pricing/', plan);
+        return response.data;
+    },
+
+    updatePricingPlan: async (id, updates) => {
+        const response = await apiClient.put(`/pricing/${id}/`, updates);
+        return response.data;
+    },
+
+    deletePricingPlan: async (id) => {
+        await apiClient.delete(`/pricing/${id}/`);
+        return { success: true };
+    },
+
+    // Technologies APIs
+    getTechnologies: async () => {
+        const response = await apiClient.get('/technologies/', { skipAuth: true });
+        return response.data;
+    },
+
+    getTechnologyById: async (id) => {
+        const response = await apiClient.get(`/technologies/${id}/`, { skipAuth: true });
+        return response.data;
+    },
+
+    createTechnology: async (tech) => {
+        const response = await apiClient.post('/technologies/', tech);
+        return response.data;
+    },
+
+    updateTechnology: async (id, updates) => {
+        const response = await apiClient.put(`/technologies/${id}/`, updates);
+        return response.data;
+    },
+
+    deleteTechnology: async (id) => {
+        await apiClient.delete(`/technologies/${id}/`);
+        return { success: true };
+    },
+
+    // Testimonials APIs
+    getTestimonials: async () => {
+        const response = await apiClient.get('/testimonials/', { skipAuth: true });
+        return response.data;
+    },
+
+    getTestimonialById: async (id) => {
+        const response = await apiClient.get(`/testimonials/${id}/`, { skipAuth: true });
+        return response.data;
+    },
+
+    createTestimonial: async (testimonial) => {
+        const response = await apiClient.post('/testimonials/', testimonial);
+        return response.data;
+    },
+
+    updateTestimonial: async (id, updates) => {
+        const response = await apiClient.put(`/testimonials/${id}/`, updates);
+        return response.data;
+    },
+
+    deleteTestimonial: async (id) => {
+        await apiClient.delete(`/testimonials/${id}/`);
+        return { success: true };
+    },
 };
 
 export default api;

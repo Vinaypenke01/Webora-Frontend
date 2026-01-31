@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FaHome, FaProjectDiagram, FaCog, FaBlog, FaEnvelope, FaSignOutAlt, FaTools } from 'react-icons/fa';
+import { FaHome, FaProjectDiagram, FaCog, FaBlog, FaEnvelope, FaSignOutAlt, FaTools, FaDollarSign, FaCode, FaStar } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
 const AdminLayout = () => {
@@ -18,6 +18,9 @@ const AdminLayout = () => {
         { name: 'Services', path: '/admin/services', icon: FaTools },
         { name: 'Blogs', path: '/admin/blogs', icon: FaBlog },
         { name: 'Messages', path: '/admin/messages', icon: FaEnvelope },
+        { name: 'Pricing', path: '/admin/pricing', icon: FaDollarSign },
+        { name: 'Technologies', path: '/admin/technologies', icon: FaCode },
+        { name: 'Testimonials', path: '/admin/testimonials', icon: FaStar },
         { name: 'Settings', path: '/admin/settings', icon: FaCog },
     ];
 

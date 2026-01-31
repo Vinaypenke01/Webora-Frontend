@@ -10,9 +10,13 @@ import { seoKeywords } from '../../utils/seo-keywords';
 import { generateBreadcrumbSchema, generateAggregateRatingSchema } from '../../utils/schema-generator';
 
 const Home = () => {
-    const { projects, services, testimonials, techStack, settings } = useApp();
+    const { projects, services, testimonials, technologies, settings } = useApp();
 
     const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+
+    // Filter and sort for active items only
+    const activeTechnologies = technologies.filter(t => t.active).sort((a, b) => a.order - b.order);
+    const activeTestimonials = testimonials.filter(t => t.active).sort((a, b) => a.order - b.order);
 
     // FAQ data for homepage
     const faqs = [
@@ -248,7 +252,7 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial) => (
+                        {activeTestimonials.map((testimonial) => (
                             <Card key={testimonial.id}>
                                 <div className="flex items-center mb-4">
                                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -284,7 +288,7 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
-                        {techStack.map((tech, index) => {
+                        {activeTechnologies.map((tech, index) => {
                             const IconComponent = Icons[tech.icon] || Icons.FaCode;
                             return (
                                 <div key={index} className="text-center group">

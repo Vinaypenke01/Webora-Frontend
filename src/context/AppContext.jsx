@@ -18,6 +18,9 @@ export const AppProvider = ({ children }) => {
     const [blogs, setBlogs] = useState([]);
     const [messages, setMessages] = useState([]);
     const [settings, setSettings] = useState({});
+    const [pricingPlans, setPricingPlans] = useState([]);
+    const [technologies, setTechnologies] = useState([]);
+    const [testimonials, setTestimonials] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -31,23 +34,42 @@ export const AppProvider = ({ children }) => {
 
             // Load all data
             const token = localStorage.getItem('digitalcore_auth_token');
-            const [projectsData, servicesData, blogsData, messagesData, settingsData] = await Promise.all([
+            const [
+                projectsData,
+                servicesData,
+                blogsData,
+                messagesData,
+                settingsData,
+                pricingData,
+                techData,
+                testimonialsData
+            ] = await Promise.all([
                 api.getProjects(),
                 api.getServices(),
                 api.getBlogs(),
                 token ? api.getMessages().catch(() => null) : Promise.resolve(null),
                 api.getSettings(),
+                api.getPricingPlans(),
+                api.getTechnologies(),
+                api.getTestimonials(),
             ]);
 
             setProjects(projectsData);
             setServices(servicesData);
             setBlogs(blogsData);
             setSettings(settingsData);
+            setPricingPlans(pricingData);
+            setTechnologies(techData);
+            setTestimonials(testimonialsData);
 
             // Only set messages if request succeeded
             if (messagesData) setMessages(messagesData);
         } catch (error) {
             console.error('Error loading data:', error);
+            // Fallback to mock data on error
+            setPricingPlans(mockData.pricingPlans);
+            setTechnologies(mockData.techStack);
+            setTestimonials(mockData.initialTestimonials);
         } finally {
             setLoading(false);
         }
@@ -132,12 +154,69 @@ export const AppProvider = ({ children }) => {
         return updated;
     };
 
+    // Pricing Plan operations
+    const addPricingPlan = async (plan) => {
+        const newPlan = await api.createPricingPlan(plan);
+        setPricingPlans([...pricingPlans, newPlan]);
+        return newPlan;
+    };
+
+    const updatePricingPlan = async (id, updates) => {
+        const updated = await api.updatePricingPlan(id, updates);
+        setPricingPlans(pricingPlans.map(p => (p.id === id ? updated : p)));
+        return updated;
+    };
+
+    const deletePricingPlan = async (id) => {
+        await api.deletePricingPlan(id);
+        setPricingPlans(pricingPlans.filter(p => p.id !== id));
+    };
+
+    // Technology operations
+    const addTechnology = async (tech) => {
+        const newTech = await api.createTechnology(tech);
+        setTechnologies([...technologies, newTech]);
+        return newTech;
+    };
+
+    const updateTechnology = async (id, updates) => {
+        const updated = await api.updateTechnology(id, updates);
+        setTechnologies(technologies.map(t => (t.id === id ? updated : t)));
+        return updated;
+    };
+
+    const deleteTechnology = async (id) => {
+        await api.deleteTechnology(id);
+        setTechnologies(technologies.filter(t => t.id !== id));
+    };
+
+    // Testimonial operations
+    const addTestimonial = async (testimonial) => {
+        const newTestimonial = await api.createTestimonial(testimonial);
+        setTestimonials([...testimonials, newTestimonial]);
+        return newTestimonial;
+    };
+
+    const updateTestimonial = async (id, updates) => {
+        const updated = await api.updateTestimonial(id, updates);
+        setTestimonials(testimonials.map(t => (t.id === id ? updated : t)));
+        return updated;
+    };
+
+    const deleteTestimonial = async (id) => {
+        await api.deleteTestimonial(id);
+        setTestimonials(testimonials.filter(t => t.id !== id));
+    };
+
     const value = {
         projects,
         services,
         blogs,
         messages,
         settings,
+        pricingPlans,
+        technologies,
+        testimonials,
         loading,
         addProject,
         updateProject,
@@ -152,10 +231,16 @@ export const AppProvider = ({ children }) => {
         markMessageRead,
         deleteMessage,
         updateSettings,
-        testimonials: mockData.initialTestimonials,
+        addPricingPlan,
+        updatePricingPlan,
+        deletePricingPlan,
+        addTechnology,
+        updateTechnology,
+        deleteTechnology,
+        addTestimonial,
+        updateTestimonial,
+        deleteTestimonial,
         teamMembers: mockData.teamMembers,
-        techStack: mockData.techStack,
-        pricingPlans: mockData.pricingPlans,
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
