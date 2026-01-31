@@ -12,11 +12,11 @@ import { generateBreadcrumbSchema, generateAggregateRatingSchema } from '../../u
 const Home = () => {
     const { projects, services, testimonials, technologies, settings } = useApp();
 
-    const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+    const featuredProjects = (projects || []).filter(p => p.featured).slice(0, 3);
 
     // Filter and sort for active items only
-    const activeTechnologies = technologies.filter(t => t.active).sort((a, b) => a.order - b.order);
-    const activeTestimonials = testimonials.filter(t => t.active).sort((a, b) => a.order - b.order);
+    const activeTechnologies = (technologies || []).filter(t => t.active).sort((a, b) => a.order - b.order);
+    const activeTestimonials = (testimonials || []).filter(t => t.active).sort((a, b) => a.order - b.order);
 
     // FAQ data for homepage
     const faqs = [

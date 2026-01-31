@@ -15,7 +15,7 @@ export const useApp = () => {
 
 export const AppProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
-    const [services] = useState(mockData.services); // Keep services static
+    const [services] = useState(mockData.initialServices || []); // Keep services static from mockData
     const [blogs, setBlogs] = useState([]);
     const [messages, setMessages] = useState([]);
     const [settings, setSettings] = useState({});

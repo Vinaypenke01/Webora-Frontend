@@ -10,7 +10,7 @@ import { generateBreadcrumbSchema, generateServiceSchema } from '../../utils/sch
 
 const Services = () => {
     const { services } = useApp();
-    const activeServices = services.filter(s => s.active);
+    const activeServices = (services || []).filter(s => s.active);
 
     const structuredData = [
         {

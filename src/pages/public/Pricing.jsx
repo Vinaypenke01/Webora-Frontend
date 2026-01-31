@@ -9,7 +9,7 @@ const Pricing = () => {
     const { pricingPlans } = useApp();
 
     // Filter for active plans and sort by order
-    const activePlans = pricingPlans.filter(p => p.active).sort((a, b) => a.order - b.order);
+    const activePlans = (pricingPlans || []).filter(p => p.active).sort((a, b) => a.order - b.order);
 
     return (
         <div>

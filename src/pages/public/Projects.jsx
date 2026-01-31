@@ -16,7 +16,7 @@ const Projects = () => {
     const categories = ['all', 'website', 'app', 'dashboard'];
 
     // Filter projects
-    const filteredProjects = projects.filter(project => {
+    const filteredProjects = (projects || []).filter(project => {
         const matchesCategory = selectedCategory === 'all' ||
             project.category?.toLowerCase() === selectedCategory.toLowerCase();
         const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
