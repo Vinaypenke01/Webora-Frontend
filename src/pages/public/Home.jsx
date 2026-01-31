@@ -5,7 +5,7 @@ import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import FAQ from '../../components/FAQ';
 import { useApp } from '../../context/AppContext';
-import SEO from '../../components/SEO';
+import { SEO } from '../../hooks/useSEO';
 import { generateBreadcrumbSchema, generateAggregateRatingSchema } from '../../utils/schema-generator';
 import TechAutoSlider from '../../components/ui/TechAutoSlider';
 
