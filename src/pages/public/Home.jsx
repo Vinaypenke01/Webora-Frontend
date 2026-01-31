@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaStar, FaArrowRight, FaCode } from 'react-icons/fa';
+import { FaStar, FaArrowRight, FaCode, FaCheckCircle } from 'react-icons/fa';
 import * as Icons from 'react-icons/fa';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';

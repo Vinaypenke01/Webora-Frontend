@@ -53,21 +53,22 @@ export const AppProvider = ({ children }) => {
                 api.getTestimonials(),
             ]);
 
-            setProjects(projectsData);
-            setBlogs(blogsData);
-            setSettings(settingsData);
-            setPricingPlans(pricingData);
-            setTechnologies(techData);
-            setTestimonials(testimonialsData);
+            // Ensure all data is an array before setting state
+            setProjects(Array.isArray(projectsData) ? projectsData : []);
+            setBlogs(Array.isArray(blogsData) ? blogsData : []);
+            setSettings(settingsData || {});
+            setPricingPlans(Array.isArray(pricingData) ? pricingData : []);
+            setTechnologies(Array.isArray(techData) ? techData : []);
+            setTestimonials(Array.isArray(testimonialsData) ? testimonialsData : []);
 
             // Only set messages if request succeeded
-            if (messagesData) setMessages(messagesData);
+            if (messagesData && Array.isArray(messagesData)) setMessages(messagesData);
         } catch (error) {
             console.error('Error loading data:', error);
             // Fallback to mock data on error
-            setPricingPlans(mockData.pricingPlans);
-            setTechnologies(mockData.techStack);
-            setTestimonials(mockData.initialTestimonials);
+            setPricingPlans(mockData.pricingPlans || []);
+            setTechnologies(mockData.techStack || []);
+            setTestimonials(mockData.initialTestimonials || []);
         } finally {
             setLoading(false);
         }
