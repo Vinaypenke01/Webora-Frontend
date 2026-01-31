@@ -4,46 +4,63 @@ import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
 import ContactForm from '../../components/forms/ContactForm';
 import { SEO } from '../../hooks/useSEO';
+import { seoKeywords } from '../../utils/seo-keywords';
+import { businessInfo } from '../../data/location-data';
+import { generateBreadcrumbSchema } from '../../utils/schema-generator';
 
 const Contact = () => {
     const { settings } = useApp();
 
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "DigitalCore",
-        "image": "https://digitalcore.co.in/logo.png",
-        "@id": "https://digitalcore.co.in",
-        "url": "https://digitalcore.co.in",
-        "telephone": settings.phone,
-        "email": settings.email,
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": settings.address,
-            "addressCountry": "IN"
-        },
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "18:00"
+    const structuredData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "DigitalCore",
+            "image": "https://digitalcore.co.in/logo.png",
+            "@id": "https://digitalcore.co.in/contact",
+            "url": "https://digitalcore.co.in",
+            "telephone": settings.phone || businessInfo.phone,
+            "email": settings.email || businessInfo.email,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": settings.address || businessInfo.address.streetAddress,
+                "addressLocality": businessInfo.address.city || "India",
+                "addressRegion": businessInfo.address.state || "India",
+                "postalCode": businessInfo.address.postalCode || "",
+                "addressCountry": "IN"
             },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "10:00",
-                "closes": "16:00"
-            }
-        ]
-    };
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": businessInfo.geo.latitude,
+                "longitude": businessInfo.geo.longitude
+            },
+            "areaServed": {
+                "@type": "Country",
+                "name": "India"
+            },
+            "priceRange": "$$",
+            "paymentAccepted": businessInfo.paymentMethods.join(", "),
+            "openingHoursSpecification": businessInfo.openingHours
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact DigitalCore",
+            "description": "Get in touch with DigitalCore for professional web development and digital marketing services",
+            "url": "https://digitalcore.co.in/contact"
+        },
+        generateBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Contact", url: "/contact" }
+        ])
+    ];
 
     return (
         <div>
             <SEO
-                title="Contact Us - Get in Touch with DigitalCore | Free Consultation"
-                description="Contact DigitalCore for professional web development and digital marketing services. Get a free consultation and quote. We're here to help transform your business online. Available Monday-Saturday."
-                keywords="contact DigitalCore, web development inquiry, free consultation, get a quote, digital agency contact, web development company contact"
+                title="Contact DigitalCore - Best Web Development & Digital Marketing Agency India | Free Consultation"
+                description="Contact DigitalCore for professional web development, mobile app development, and digital marketing services in India. Get a free consultation and quote. Available Monday-Saturday. Transform your business online today!"
+                keywords={seoKeywords.getContactPageKeywords()}
                 canonicalUrl="https://digitalcore.co.in/contact"
                 structuredData={structuredData}
             />

@@ -1,10 +1,38 @@
-# Allow all crawlers
+# DigitalCore - Robots.txt Configuration
+# Updated: 2026-01-31
+
+# Allow all crawlers with specific rules
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Disallow admin area
+# Explicitly allow important pages
+Allow: /about
+Allow: /services
+Allow: /projects
+Allow: /blog
+Allow: /contact
+Allow: /pricing
+
+# Disallow admin and private areas
 Disallow: /admin/
 Disallow: /create-admin
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /private/
 
-# Sitemap location
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing-specific directives
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap locations
 Sitemap: https://digitalcore.co.in/sitemap.xml

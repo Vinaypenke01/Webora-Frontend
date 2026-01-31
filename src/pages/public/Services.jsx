@@ -5,32 +5,38 @@ import { FaArrowRight } from 'react-icons/fa';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
 import { SEO } from '../../hooks/useSEO';
+import { seoKeywords } from '../../utils/seo-keywords';
+import { generateBreadcrumbSchema, generateServiceSchema } from '../../utils/schema-generator';
 
 const Services = () => {
     const { services } = useApp();
     const activeServices = services.filter(s => s.active);
 
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": activeServices.map((service, index) => ({
-            "@type": "Service",
-            "position": index + 1,
-            "name": service.title,
-            "description": service.shortDescription,
-            "provider": {
-                "@type": "Organization",
-                "name": "DigitalCore"
-            }
-        }))
-    };
+    const structuredData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": activeServices.map((service, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    ...generateServiceSchema(service),
+                    "url": `https://digitalcore.co.in/services/${service.id}`
+                }
+            }))
+        },
+        generateBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Services", url: "/services" }
+        ])
+    ];
 
     return (
         <div>
             <SEO
-                title="Our Services - Web Development, Mobile Apps & Digital Solutions | DigitalCore"
-                description="Explore DigitalCore's comprehensive digital services including custom web development, mobile app development, e-commerce solutions, UI/UX design, and cloud deployment. Professional solutions tailored to your business needs."
-                keywords="web development services, mobile app development, e-commerce development, UI/UX design services, cloud solutions, API development, custom software, React development services"
+                title="Professional Web Development & Digital Marketing Services India | Top Solutions 2026"
+                description="Explore DigitalCore's comprehensive digital services: custom web development, mobile app development, e-commerce solutions, UI/UX design, SEO services, and cloud deployment. Professional solutions tailored to your business needs across India."
+                keywords={seoKeywords.getServicesPageKeywords()}
                 canonicalUrl="https://digitalcore.co.in/services"
                 structuredData={structuredData}
             />

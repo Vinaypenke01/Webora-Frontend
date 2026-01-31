@@ -5,33 +5,79 @@ import * as Icons from 'react-icons/fa';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { SEO } from '../../hooks/useSEO';
+import FAQ from '../../components/FAQ';
+import { seoKeywords } from '../../utils/seo-keywords';
+import { generateBreadcrumbSchema, generateAggregateRatingSchema } from '../../utils/schema-generator';
 
 const Home = () => {
     const { projects, services, testimonials, techStack, settings } = useApp();
 
     const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 
-    // Structured data for the home page
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "DigitalCore",
-        "url": "https://digitalcore.co.in",
-        "description": "Leading digital agency in India providing professional web development, mobile apps, cloud solutions, and digital marketing services.",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://digitalcore.co.in/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
+    // FAQ data for homepage
+    const faqs = [
+        {
+            question: "What services does DigitalCore offer?",
+            answer: "DigitalCore offers comprehensive digital solutions including custom web development, mobile app development (iOS & Android), e-commerce solutions, UI/UX design, digital marketing, SEO services, and cloud deployment. We specialize in modern technologies like React, Node.js, and provide end-to-end development services for businesses across India."
+        },
+        {
+            question: "How much does web development cost in India?",
+            answer: "Web development costs vary based on project complexity, features, and timeline. At DigitalCore, we offer flexible pricing packages starting from affordable rates for small businesses to enterprise solutions. Contact us for a free consultation and custom quote tailored to your specific requirements."
+        },
+        {
+            question: "How long does it take to build a website?",
+            answer: "A typical website takes 2-8 weeks depending on complexity. Simple websites can be completed in 2-3 weeks, while complex e-commerce or custom web applications may take 6-12 weeks. We provide detailed timelines during project planning and ensure on-time delivery with regular updates."
+        },
+        {
+            question: "Do you provide SEO services?",
+            answer: "Yes! DigitalCore offers comprehensive SEO services including keyword research, on-page optimization, technical SEO, link building, local SEO, and ongoing SEO maintenance. Our SEO experts use the latest 2026 strategies to help your website rank on the first page of Google and other search engines."
+        },
+        {
+            question: "Do you offer support after website launch?",
+            answer: "Absolutely! We provide ongoing maintenance and support packages including bug fixes, security updates, content updates, performance monitoring, and technical support. Our team is available to ensure your website runs smoothly and stays up-to-date with the latest technologies."
         }
-    };
+    ];
+
+    // Structured data for the home page
+    const structuredData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "DigitalCore",
+            "url": "https://digitalcore.co.in",
+            "description": "India's leading digital marketing agency and web development company providing professional web development, mobile apps, cloud solutions, and digital marketing services.",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://digitalcore.co.in/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "DigitalCore"
+            }
+        },
+        generateBreadcrumbSchema([
+            { name: "Home", url: "/" }
+        ]),
+        // Add aggregate rating from testimonials
+        testimonials.length > 0 ? {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DigitalCore",
+            "aggregateRating": generateAggregateRatingSchema(testimonials)
+        } : null
+    ].filter(Boolean);
 
 
     return (
         <div>
             <SEO
-                title="DigitalCore - Professional Web Development & Digital Marketing Services in India"
-                description="DigitalCore is India's leading digital agency specializing in custom web development, mobile app development, cloud solutions, and digital marketing. Transform your business with cutting-edge technology and expert solutions."
-                keywords="web development India, digital agency, mobile app development, cloud solutions, digital marketing services, custom software development, React development, Node.js development, SEO services"
+                title="Best Digital Marketing Agency & Web Development Company India 2026 | DigitalCore"
+                description="DigitalCore is India's #1 digital marketing agency & web development company. Expert SEO services, mobile app development, e-commerce solutions & cloud services. Transform your business with cutting-edge technology. Get free consultation today!"
+                keywords={seoKeywords.getHomePageKeywords()}
                 canonicalUrl="https://digitalcore.co.in/"
                 structuredData={structuredData}
             />
@@ -250,6 +296,13 @@ const Home = () => {
                             );
                         })}
                     </div>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="section-padding bg-gray-50">
+                <div className="container-custom">
+                    <FAQ faqs={faqs} title="Frequently Asked Questions" />
                 </div>
             </section>
 

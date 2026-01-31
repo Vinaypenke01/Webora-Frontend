@@ -1,0 +1,50 @@
+# Security and Performance Headers
+# This file is used by many hosting providers (Netlify, Vercel, etc.)
+
+/*
+  # Security Headers
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+  # Performance Headers
+  Cache-Control: public, max-age=0, must-revalidate
+  
+# Static Assets - Long Cache
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - Long Cache
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images - Medium Cache
+/*.jpg
+  Cache-Control: public, max-age=2592000
+
+/*.jpeg
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.webp
+  Cache-Control: public, max-age=2592000
+
+/*.svg
+  Cache-Control: public, max-age=2592000
+
+# Sitemap and Robots
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
