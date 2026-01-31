@@ -5,6 +5,7 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import Modal from '../../components/ui/Modal';
 import Alert from '../../components/ui/Alert';
+import Loader from '../../components/ui/Loader';
 
 const ManageProjects = () => {
     const { projects, addProject, updateProject, deleteProject } = useApp();
@@ -22,6 +23,7 @@ const ManageProjects = () => {
     });
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleOpenModal = (project = null) => {
         if (project) {
@@ -65,6 +67,7 @@ const ManageProjects = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         try {
             const projectData = {
                 ...formData,
@@ -85,6 +88,8 @@ const ManageProjects = () => {
             setTimeout(() => setSuccess(''), 3000);
         } catch (err) {
             setError('Failed to save project');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -154,15 +159,16 @@ const ManageProjects = () => {
                 size="lg"
                 footer={
                     <>
-                        <Button variant="outline" onClick={handleCloseModal}>
+                        <Button variant="outline" onClick={handleCloseModal} disabled={isSubmitting}>
                             Cancel
                         </Button>
-                        <Button variant="primary" onClick={handleSubmit}>
-                            {editingProject ? 'Update' : 'Create'}
+                        <Button variant="primary" onClick={handleSubmit} disabled={isSubmitting}>
+                            {isSubmitting ? 'Saving...' : editingProject ? 'Update' : 'Create'}
                         </Button>
                     </>
                 }
             >
+                {isSubmitting && <Loader fullScreen text={editingProject ? "Updating project..." : "Adding project..."} />}
                 <form className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium mb-2">Title *</label>

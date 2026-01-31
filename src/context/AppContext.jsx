@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../services/api';
 import * as mockData from '../data/mockData';
+import Loader from '../components/ui/Loader';
 
 const AppContext = createContext();
 
@@ -14,7 +15,7 @@ export const useApp = () => {
 
 export const AppProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
-    const [services, setServices] = useState([]);
+    const [services] = useState(mockData.services); // Keep services static
     const [blogs, setBlogs] = useState([]);
     const [messages, setMessages] = useState([]);
     const [settings, setSettings] = useState({});
@@ -32,11 +33,10 @@ export const AppProvider = ({ children }) => {
             // Initialize storage with mock data
             api.initializeStorage(mockData);
 
-            // Load all data
+            // Load all data (except services which are static)
             const token = localStorage.getItem('digitalcore_auth_token');
             const [
                 projectsData,
-                servicesData,
                 blogsData,
                 messagesData,
                 settingsData,
@@ -45,7 +45,6 @@ export const AppProvider = ({ children }) => {
                 testimonialsData
             ] = await Promise.all([
                 api.getProjects(),
-                api.getServices(),
                 api.getBlogs(),
                 token ? api.getMessages().catch(() => null) : Promise.resolve(null),
                 api.getSettings(),
@@ -55,7 +54,6 @@ export const AppProvider = ({ children }) => {
             ]);
 
             setProjects(projectsData);
-            setServices(servicesData);
             setBlogs(blogsData);
             setSettings(settingsData);
             setPricingPlans(pricingData);
@@ -93,23 +91,7 @@ export const AppProvider = ({ children }) => {
         setProjects(projects.filter(p => p.id !== id));
     };
 
-    // Service operations
-    const addService = async (service) => {
-        const newService = await api.createService(service);
-        setServices([...services, newService]);
-        return newService;
-    };
 
-    const updateService = async (id, updates) => {
-        const updated = await api.updateService(id, updates);
-        setServices(services.map(s => (s.id === id ? updated : s)));
-        return updated;
-    };
-
-    const deleteService = async (id) => {
-        await api.deleteService(id);
-        setServices(services.filter(s => s.id !== id));
-    };
 
     // Blog operations
     const addBlog = async (blog) => {
@@ -210,7 +192,7 @@ export const AppProvider = ({ children }) => {
 
     const value = {
         projects,
-        services,
+        services, // Static services from mockData
         blogs,
         messages,
         settings,
@@ -221,9 +203,7 @@ export const AppProvider = ({ children }) => {
         addProject,
         updateProject,
         deleteProject,
-        addService,
-        updateService,
-        deleteService,
+        // Service operations removed - services are static
         addBlog,
         updateBlog,
         deleteBlog,
@@ -242,6 +222,10 @@ export const AppProvider = ({ children }) => {
         deleteTestimonial,
         teamMembers: mockData.teamMembers,
     };
+
+    if (loading) {
+        return <Loader fullScreen text="Loading DigitalCore..." />;
+    }
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
