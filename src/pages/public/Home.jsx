@@ -297,10 +297,21 @@ const Home = () => {
                                 <Button
                                     variant="primary"
                                     size="lg"
-                                    className="bg-white text-primary hover:bg-gray-100 shadow-xl px-8"
+                                    className="
+        bg-white  px-8 shadow-xl
+        transition-all duration-300
+        hover:-translate-y-1 hover:shadow-2xl
+        group
+    "
                                 >
-                                    Get Free Consultation →
+                                    <span className="flex items-center gap-2">
+                                        Get Free Consultation
+                                        <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </span>
                                 </Button>
+
                             </Link>
                         </div>
 
