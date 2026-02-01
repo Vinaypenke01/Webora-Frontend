@@ -7,6 +7,7 @@ const Button = ({
     disabled = false,
     loading = false,
     icon,
+    iconPosition = 'left',
     className = '',
     ...props
 }) => {
@@ -45,8 +46,9 @@ const Button = ({
                 </>
             ) : (
                 <>
-                    {icon && <span>{icon}</span>}
+                    {icon && iconPosition === 'left' && <span>{icon}</span>}
                     {children}
+                    {icon && iconPosition === 'right' && <span>{icon}</span>}
                 </>
             )}
         </button>

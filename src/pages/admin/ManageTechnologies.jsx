@@ -5,6 +5,7 @@ import * as Icons from 'react-icons/fa';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Pagination from '../../components/ui/Pagination';
+import EmptyState from '../../components/ui/EmptyState';
 
 const ManageTechnologies = () => {
     const { technologies, addTechnology, updateTechnology, deleteTechnology } = useApp();
@@ -67,34 +68,48 @@ const ManageTechnologies = () => {
                 </Button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {technologies
-                    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-                    .map((tech) => {
-                        const IconComponent = Icons[tech.icon] || Icons.FaCode;
-                        return (
-                            <Card key={tech.id} className="text-center">
-                                <IconComponent className="text-5xl mx-auto mb-3" style={{ color: tech.color }} />
-                                <h3 className="font-bold mb-2">{tech.name}</h3>
-                                <div className="text-xs text-gray-500 mb-3">Order: {tech.order}</div>
-                                <div className="flex gap-1 justify-center">
-                                    <button onClick={() => handleEdit(tech)} className="p-2 hover:bg-gray-100 rounded">
-                                        <FaEdit />
-                                    </button>
-                                    <button onClick={() => handleDelete(tech.id)} className="p-2 hover:bg-red-100 rounded text-red-600">
-                                        <FaTrash />
-                                    </button>
-                                </div>
-                            </Card>
-                        );
-                    })}
-            </div>
+            {technologies.length > 0 ? (
+                <>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                        {technologies
+                            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                            .map((tech) => {
+                                const IconComponent = Icons[tech.icon] || Icons.FaCode;
+                                return (
+                                    <Card key={tech.id} className="text-center">
+                                        <IconComponent className="text-5xl mx-auto mb-3" style={{ color: tech.color }} />
+                                        <h3 className="font-bold mb-2">{tech.name}</h3>
+                                        <div className="text-xs text-gray-500 mb-3">Order: {tech.order}</div>
+                                        <div className="flex gap-1 justify-center">
+                                            <button onClick={() => handleEdit(tech)} className="p-2 hover:bg-gray-100 rounded">
+                                                <FaEdit />
+                                            </button>
+                                            <button onClick={() => handleDelete(tech.id)} className="p-2 hover:bg-red-100 rounded text-red-600">
+                                                <FaTrash />
+                                            </button>
+                                        </div>
+                                    </Card>
+                                );
+                            })}
+                    </div>
 
-            <Pagination
-                currentPage={currentPage}
-                totalPages={Math.ceil(technologies.length / itemsPerPage)}
-                onPageChange={(page) => setCurrentPage(page)}
-            />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={Math.ceil(technologies.length / itemsPerPage)}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
+                </>
+            ) : (
+                <EmptyState
+                    title="No Technologies Found"
+                    description="You haven't added any technologies yet. Add the tools you use!"
+                    actionLabel="Add Technology"
+                    onAction={() => { resetForm(); setShowModal(true); }}
+                    icon={Icons.FaCode}
+                />
+            )}
+
+
 
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

@@ -1,34 +1,37 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ScrollToTop from '../components/ScrollToTop';
+import LoadingFallback from '../components/ui/LoadingFallback';
 
 // Layouts
 import PublicLayout from '../layouts/PublicLayout';
 import AdminLayout from '../layouts/AdminLayout';
 
 // Public Pages
-import Home from '../pages/public/Home';
-import About from '../pages/public/About';
-import Services from '../pages/public/Services';
-import ServiceDetail from '../pages/public/ServiceDetail';
-import Projects from '../pages/public/Projects';
-import ProjectDetail from '../pages/public/ProjectDetail';
-import Contact from '../pages/public/Contact';
-import Pricing from '../pages/public/Pricing';
-import Blog from '../pages/public/Blog';
-import BlogDetail from '../pages/public/BlogDetail';
-import CreateAdmin from '../pages/CreateAdmin';
+const Home = lazy(() => import('../pages/public/Home'));
+const About = lazy(() => import('../pages/public/About'));
+const Services = lazy(() => import('../pages/public/Services'));
+const ServiceDetail = lazy(() => import('../pages/public/ServiceDetail'));
+const Projects = lazy(() => import('../pages/public/Projects'));
+const ProjectDetail = lazy(() => import('../pages/public/ProjectDetail'));
+const Contact = lazy(() => import('../pages/public/Contact'));
+const Pricing = lazy(() => import('../pages/public/Pricing'));
+const Blog = lazy(() => import('../pages/public/Blog'));
+const BlogDetail = lazy(() => import('../pages/public/BlogDetail'));
+const CreateAdmin = lazy(() => import('../pages/CreateAdmin'));
+
 // Admin Pages
-import Login from '../pages/admin/Login';
-import Dashboard from '../pages/admin/Dashboard';
-import ManageProjects from '../pages/admin/ManageProjects';
-import ManageServices from '../pages/admin/ManageServices';
-import ManageBlogs from '../pages/admin/ManageBlogs';
-import ManageMessages from '../pages/admin/ManageMessages';
-import SiteSettings from '../pages/admin/SiteSettings';
-import ManagePricing from '../pages/admin/ManagePricing';
-import ManageTechnologies from '../pages/admin/ManageTechnologies';
-import ManageTestimonials from '../pages/admin/ManageTestimonials';
+const Login = lazy(() => import('../pages/admin/Login'));
+const Dashboard = lazy(() => import('../pages/admin/Dashboard'));
+const ManageProjects = lazy(() => import('../pages/admin/ManageProjects'));
+const ManageServices = lazy(() => import('../pages/admin/ManageServices'));
+const ManageBlogs = lazy(() => import('../pages/admin/ManageBlogs'));
+const ManageMessages = lazy(() => import('../pages/admin/ManageMessages'));
+const SiteSettings = lazy(() => import('../pages/admin/SiteSettings'));
+const ManagePricing = lazy(() => import('../pages/admin/ManagePricing'));
+const ManageTechnologies = lazy(() => import('../pages/admin/ManageTechnologies'));
+const ManageTestimonials = lazy(() => import('../pages/admin/ManageTestimonials'));
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -45,49 +48,51 @@ const AppRoutes = () => {
     return (
         <BrowserRouter>
             <ScrollToTop />
-            <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<PublicLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<About />} />
-                    <Route path="services" element={<Services />} />
-                    <Route path="services/:id" element={<ServiceDetail />} />
-                    <Route path="projects" element={<Projects />} />
-                    <Route path="projects/:id" element={<ProjectDetail />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="pricing" element={<Pricing />} />
-                    <Route path="blog" element={<Blog />} />
-                    <Route path="blog/:slug" element={<BlogDetail />} />
-                    <Route path="create-admin" element={<CreateAdmin />} />
-                </Route>
+            <Suspense fallback={<LoadingFallback />}>
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<PublicLayout />}>
+                        <Route index element={<Home />} />
+                        <Route path="about" element={<About />} />
+                        <Route path="services" element={<Services />} />
+                        <Route path="services/:id" element={<ServiceDetail />} />
+                        <Route path="projects" element={<Projects />} />
+                        <Route path="projects/:id" element={<ProjectDetail />} />
+                        <Route path="contact" element={<Contact />} />
+                        <Route path="pricing" element={<Pricing />} />
+                        <Route path="blog" element={<Blog />} />
+                        <Route path="blog/:slug" element={<BlogDetail />} />
+                        <Route path="create-admin" element={<CreateAdmin />} />
+                    </Route>
 
-                {/* Admin Login (not protected) */}
-                <Route path="/admin/login" element={<Login />} />
+                    {/* Admin Login (not protected) */}
+                    <Route path="/admin/login" element={<Login />} />
 
-                {/* Protected Admin Routes */}
-                <Route
-                    path="/admin"
-                    element={
-                        <ProtectedRoute>
-                            <AdminLayout />
-                        </ProtectedRoute>
-                    }
-                >
-                    <Route index element={<Navigate to="/admin/dashboard" replace />} />
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="projects" element={<ManageProjects />} />
-                    <Route path="services" element={<ManageServices />} />
-                    <Route path="blogs" element={<ManageBlogs />} />
-                    <Route path="messages" element={<ManageMessages />} />
-                    <Route path="settings" element={<SiteSettings />} />
-                    <Route path="pricing" element={<ManagePricing />} />
-                    <Route path="technologies" element={<ManageTechnologies />} />
-                    <Route path="testimonials" element={<ManageTestimonials />} />
-                </Route>
+                    {/* Protected Admin Routes */}
+                    <Route
+                        path="/admin"
+                        element={
+                            <ProtectedRoute>
+                                <AdminLayout />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                        <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="projects" element={<ManageProjects />} />
+                        <Route path="services" element={<ManageServices />} />
+                        <Route path="blogs" element={<ManageBlogs />} />
+                        <Route path="messages" element={<ManageMessages />} />
+                        <Route path="settings" element={<SiteSettings />} />
+                        <Route path="pricing" element={<ManagePricing />} />
+                        <Route path="technologies" element={<ManageTechnologies />} />
+                        <Route path="testimonials" element={<ManageTestimonials />} />
+                    </Route>
 
-                {/* 404 */}
-                <Route path="*" element={<div className="min-h-screen flex items-center justify-center"><h1>404 - Page Not Found</h1></div>} />
-            </Routes>
+                    {/* 404 */}
+                    <Route path="*" element={<div className="min-h-screen flex items-center justify-center"><h1>404 - Page Not Found</h1></div>} />
+                </Routes>
+            </Suspense>
         </BrowserRouter>
     );
 };

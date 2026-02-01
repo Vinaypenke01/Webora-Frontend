@@ -4,6 +4,8 @@ import { useApp } from '../../context/AppContext';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
 import Pagination from '../../components/ui/Pagination';
+import EmptyState from '../../components/ui/EmptyState';
+import { FaBlog } from 'react-icons/fa';
 
 const Blog = () => {
     const { blogs, loading } = useApp();
@@ -101,10 +103,19 @@ const Blog = () => {
                                 />
                             )}
                         </>
+
+                    )}
+
+                    {blogs.length === 0 && (
+                        <EmptyState
+                            title="No Blogs Found"
+                            description="Our blog is empty at the moment. Check back soon for updates!"
+                            icon={FaBlog}
+                        />
                     )}
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 };
 

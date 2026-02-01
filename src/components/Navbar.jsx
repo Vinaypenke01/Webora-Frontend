@@ -70,8 +70,8 @@ const Navbar = () => {
         <>
             <nav
                 className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled
-                        ? 'bg-white shadow-md py-2'
-                        : 'bg-transparent py-4'
+                    ? 'bg-white shadow-md py-2'
+                    : 'bg-transparent py-4'
                     }`}
             >
                 <div className="container-custom">
@@ -127,8 +127,8 @@ const Navbar = () => {
                         <button
                             onClick={toggleMenu}
                             className={`lg:hidden relative z-50 p-2 rounded-lg transition-all duration-200 ${scrolled
-                                    ? 'text-gray-900 hover:bg-gray-100'
-                                    : 'text-white hover:bg-white/10'
+                                ? 'text-gray-900 hover:bg-gray-100'
+                                : 'text-white hover:bg-white/10'
                                 }`}
                             aria-label={isOpen ? 'Close menu' : 'Open menu'}
                             aria-expanded={isOpen}
@@ -211,7 +211,7 @@ const Navbar = () => {
             </div>
 
             {/* Keyframe animation for mobile menu items */}
-            <style jsx>{`
+            <style>{`
                 @keyframes slideIn {
                     from {
                         opacity: 0;

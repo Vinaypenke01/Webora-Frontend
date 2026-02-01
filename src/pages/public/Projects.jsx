@@ -5,6 +5,8 @@ import { FaArrowRight } from 'react-icons/fa';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
 import Pagination from '../../components/ui/Pagination';
+import EmptyState from '../../components/ui/EmptyState';
+import { FaProjectDiagram } from 'react-icons/fa';
 
 const Projects = () => {
     const { projects, loading } = useApp();
@@ -140,9 +142,14 @@ const Projects = () => {
                             )}
                         </>
                     ) : (
-                        <div className="text-center py-12">
-                            <p className="text-xl text-gray-600">No projects found</p>
-                        </div>
+
+                        <EmptyState
+                            title="No Projects Found"
+                            description={searchTerm ? `No projects match your search "${searchTerm}".` : "No projects found in this category."}
+                            actionLabel="Clear Filters"
+                            onAction={() => { setSearchTerm(''); setSelectedCategory('all'); }}
+                            icon={FaProjectDiagram}
+                        />
                     )}
                 </div>
             </section>

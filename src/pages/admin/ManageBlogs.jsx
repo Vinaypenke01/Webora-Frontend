@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaBlog } from 'react-icons/fa';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import Modal from '../../components/ui/Modal';
 import Alert from '../../components/ui/Alert';
 import Loader from '../../components/ui/Loader';
 import Pagination from '../../components/ui/Pagination';
+import EmptyState from '../../components/ui/EmptyState';
 
 const ManageBlogs = () => {
     const { blogs, addBlog, updateBlog, deleteBlog } = useApp();
@@ -129,44 +130,58 @@ const ManageBlogs = () => {
             {success && <Alert type="success" message={success} autoClose className="mb-6" />}
             {error && <Alert type="error" message={error} dismissible onClose={() => setError('')} className="mb-6" />}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogs
-                    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-                    .map(blog => (
-                        <Card key={blog.id} className="overflow-hidden p-0">
-                            <div className="aspect-video overflow-hidden">
-                                <img
-                                    src={typeof blog.featuredImage === 'string' ? blog.featuredImage : (blog.featuredImage instanceof File ? URL.createObjectURL(blog.featuredImage) : '')}
-                                    alt={blog.title}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <div className="p-6">
-                                <div className="flex items-start justify-between mb-3">
-                                    <div>
-                                        <span className="text-sm text-primary font-semibold uppercase">{blog.category}</span>
-                                        <h3 className="text-lg font-bold mt-1 line-clamp-2">{blog.title}</h3>
+            {blogs.length > 0 ? (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {blogs
+                            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                            .map(blog => (
+                                <Card key={blog.id} className="overflow-hidden p-0">
+                                    <div className="aspect-video overflow-hidden">
+                                        <img
+                                            src={typeof blog.featuredImage === 'string' ? blog.featuredImage : (blog.featuredImage instanceof File ? URL.createObjectURL(blog.featuredImage) : '')}
+                                            alt={blog.title}
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
-                                </div>
-                                <p className="text-gray-600 mb-4 text-sm line-clamp-3">{blog.excerpt}</p>
-                                <div className="flex gap-2">
-                                    <Button variant="outline" size="sm" icon={<FaEdit />} onClick={() => handleOpenModal(blog)}>
-                                        Edit
-                                    </Button>
-                                    <Button variant="danger" size="sm" icon={<FaTrash />} onClick={() => handleDelete(blog.id)}>
-                                        Delete
-                                    </Button>
-                                </div>
-                            </div>
-                        </Card>
-                    ))}
-            </div>
+                                    <div className="p-6">
+                                        <div className="flex items-start justify-between mb-3">
+                                            <div>
+                                                <span className="text-sm text-primary font-semibold uppercase">{blog.category}</span>
+                                                <h3 className="text-lg font-bold mt-1 line-clamp-2">{blog.title}</h3>
+                                            </div>
+                                        </div>
+                                        <p className="text-gray-600 mb-4 text-sm line-clamp-3">{blog.excerpt}</p>
+                                        <div className="flex gap-2">
+                                            <Button variant="outline" size="sm" icon={<FaEdit />} onClick={() => handleOpenModal(blog)}>
+                                                Edit
+                                            </Button>
+                                            <Button variant="danger" size="sm" icon={<FaTrash />} onClick={() => handleDelete(blog.id)}>
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </Card>
+                            ))}
+                    </div>
 
-            <Pagination
-                currentPage={currentPage}
-                totalPages={Math.ceil(blogs.length / itemsPerPage)}
-                onPageChange={(page) => setCurrentPage(page)}
-            />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={Math.ceil(blogs.length / itemsPerPage)}
+                        onPageChange={(page) => setCurrentPage(page)}
+                    />
+                </>
+            ) : (
+                <EmptyState
+                    title="No Blogs Found"
+                    description="You haven't created any blog posts yet. Start sharing your thoughts and news!"
+                    actionLabel="Add First Blog"
+                    onAction={() => handleOpenModal()}
+                    icon={FaBlog}
+                />
+            )}
+
+
 
             <Modal
                 isOpen={isModalOpen}
