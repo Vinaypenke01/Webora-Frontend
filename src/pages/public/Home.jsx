@@ -276,34 +276,72 @@ const Home = () => {
 
 
             {/* CTA Section */}
-            <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+            {/* CTA Section – Strong & Compact */}
+            <section className="relative py-10 md:py-12 bg-gradient-to-r from-primary via-secondary to-primary text-white">
+                <div className="container-custom">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
 
-                <div className="container-custom relative z-10 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
-                    <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10">
-                        Let's collaborate to build something amazing together. Get in touch with us today for a free consultation.
-                    </p>
-                    <Link to="/contact">
-                        <Button variant="primary" size="lg" className="bg-white text-primary hover:bg-gray-100 border-none">
-                            Get a Free Quote
-                        </Button>
-                    </Link>
+                        {/* Text */}
+                        <div className="md:col-span-2">
+                            <h2 className="text-2xl md:text-3xl font-bold leading-tight">
+                                Have a project in mind?
+                            </h2>
+                            <p className="text-white/90 mt-2 text-sm md:text-base max-w-xl">
+                                Websites, web apps, startups, or redesigns — we help businesses turn ideas into scalable digital products.
+                            </p>
+                        </div>
+
+                        {/* Action */}
+                        <div className="flex md:justify-end">
+                            <Link to="/contact">
+                                <Button
+                                    variant="primary"
+                                    size="lg"
+                                    className="bg-white text-primary hover:bg-gray-100 shadow-xl px-8"
+                                >
+                                    Get Free Consultation →
+                                </Button>
+                            </Link>
+                        </div>
+
+                    </div>
                 </div>
             </section>
+
             {/* FAQ Section - Enhanced */}
-            <section className="section-padding bg-white">
+            {/* FAQ Section – Authoritative */}
+            <section className="py-20 bg-white">
                 <div className="container-custom">
-                    <div className="text-center max-w-2xl mx-auto mb-12">
-                        <span className="text-primary font-bold tracking-wider uppercase text-sm">Common Questions</span>
-                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
-                        <p className="text-gray-600">Got questions? We've got answers to help you understand our process and services.</p>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+                        {/* Left Side – Authority */}
+                        <div>
+                            <h2 className="text-3xl font-bold mb-4">
+                                Questions clients ask us before hiring
+                            </h2>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                                We believe in transparency. These are the most common questions businesses ask before starting a project with us.
+                            </p>
+
+                            <div className="mt-6 text-sm text-gray-500">
+                                📌 Still unsure?
+                                <Link to="/contact" className="text-primary font-semibold ml-1 hover:underline">
+                                    Talk to us directly
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Right Side – FAQs */}
+                        <div className="lg:col-span-2 bg-gray-50 rounded-xl p-6 md:p-8 border">
+                            <FAQ faqs={faqs} />
+                        </div>
+
                     </div>
 
-                    <FAQ faqs={faqs} />
                 </div>
             </section>
+
         </div>
     );
 };
