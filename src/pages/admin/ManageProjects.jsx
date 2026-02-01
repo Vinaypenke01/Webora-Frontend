@@ -6,6 +6,7 @@ import Button from '../../components/ui/Button';
 import Modal from '../../components/ui/Modal';
 import Alert from '../../components/ui/Alert';
 import Loader from '../../components/ui/Loader';
+import Pagination from '../../components/ui/Pagination';
 
 const ManageProjects = () => {
     const { projects, addProject, updateProject, deleteProject } = useApp();
@@ -24,6 +25,8 @@ const ManageProjects = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
 
     const handleOpenModal = (project = null) => {
         if (project) {
@@ -121,36 +124,44 @@ const ManageProjects = () => {
             {error && <Alert type="error" message={error} dismissible onClose={() => setError('')} className="mb-6" />}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.map(project => (
-                    <Card key={project.id} className="overflow-hidden p-0">
-                        <div className="aspect-video overflow-hidden">
-                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                        </div>
-                        <div className="p-6">
-                            <div className="flex items-start justify-between mb-3">
-                                <div>
-                                    <span className="text-sm text-primary font-semibold uppercase">{project.category}</span>
-                                    <h3 className="text-xl font-bold mt-1">{project.title}</h3>
+                {projects
+                    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                    .map(project => (
+                        <Card key={project.id} className="overflow-hidden p-0">
+                            <div className="aspect-video overflow-hidden">
+                                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="p-6">
+                                <div className="flex items-start justify-between mb-3">
+                                    <div>
+                                        <span className="text-sm text-primary font-semibold uppercase">{project.category}</span>
+                                        <h3 className="text-xl font-bold mt-1">{project.title}</h3>
+                                    </div>
+                                    {project.featured && (
+                                        <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">
+                                            Featured
+                                        </span>
+                                    )}
                                 </div>
-                                {project.featured && (
-                                    <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">
-                                        Featured
-                                    </span>
-                                )}
+                                <p className="text-gray-600 mb-4 text-sm">{project.description.slice(0, 100)}...</p>
+                                <div className="flex gap-2">
+                                    <Button variant="outline" size="sm" icon={<FaEdit />} onClick={() => handleOpenModal(project)}>
+                                        Edit
+                                    </Button>
+                                    <Button variant="danger" size="sm" icon={<FaTrash />} onClick={() => handleDelete(project.id)}>
+                                        Delete
+                                    </Button>
+                                </div>
                             </div>
-                            <p className="text-gray-600 mb-4 text-sm">{project.description.slice(0, 100)}...</p>
-                            <div className="flex gap-2">
-                                <Button variant="outline" size="sm" icon={<FaEdit />} onClick={() => handleOpenModal(project)}>
-                                    Edit
-                                </Button>
-                                <Button variant="danger" size="sm" icon={<FaTrash />} onClick={() => handleDelete(project.id)}>
-                                    Delete
-                                </Button>
-                            </div>
-                        </div>
-                    </Card>
-                ))}
+                        </Card>
+                    ))}
             </div>
+
+            <Pagination
+                currentPage={currentPage}
+                totalPages={Math.ceil(projects.length / itemsPerPage)}
+                onPageChange={(page) => setCurrentPage(page)}
+            />
 
             <Modal
                 isOpen={isModalOpen}

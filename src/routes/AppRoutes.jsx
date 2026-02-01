@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ScrollToTop from '../components/ScrollToTop';
 
 // Layouts
 import PublicLayout from '../layouts/PublicLayout';
@@ -43,6 +44,7 @@ const ProtectedRoute = ({ children }) => {
 const AppRoutes = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<PublicLayout />}>
