@@ -25,10 +25,10 @@ const AdminLayout = () => {
     ];
 
     return (
-        <div className="min-h-screen flex bg-gray-100">
+        <div className="h-screen flex bg-gray-100 overflow-hidden">
             {/* Sidebar */}
-            <aside className="w-64 bg-gradient-to-b from-primary to-secondary text-white flex-shrink-0">
-                <div className="p-6">
+            <aside className="w-64 bg-gradient-to-b from-primary to-secondary text-white flex-shrink-0 flex flex-col">
+                <div className="p-6 flex-1 overflow-y-auto">
                     <img src={logo} alt="DigitalCore" className="h-14 mb-8" />
 
                     <nav className="space-y-2">
@@ -50,7 +50,7 @@ const AdminLayout = () => {
                     </nav>
                 </div>
 
-                <div className="absolute bottom-0 w-64 p-6 border-t border-white/20">
+                <div className="p-6 border-t border-white/20 flex-shrink-0">
                     <div className="mb-4">
                         <p className="text-sm text-gray-300">Logged in as</p>
                         <p className="font-medium">{user?.name || 'Admin'}</p>
@@ -66,14 +66,14 @@ const AdminLayout = () => {
             </aside>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col h-full overflow-hidden">
                 {/* Header */}
-                <header className="bg-white shadow-sm p-6">
+                <header className="bg-white shadow-sm p-6 flex-shrink-0">
                     <h2 className="text-2xl font-bold text-gray-900">Admin Panel</h2>
                 </header>
 
                 {/* Page Content */}
-                <main className="flex-1 p-6 overflow-auto">
+                <main className="flex-1 p-6 overflow-y-auto">
                     <Outlet />
                 </main>
             </div>
