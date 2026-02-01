@@ -114,7 +114,7 @@ const ManagePricing = () => {
                             </div>
                         )}
                         <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                        <div className="text-3xl font-bold text-primary mb-2">{plan.price}</div>
+                        <div className="text-3xl font-bold text-primary mb-2"> ₹{plan.price}</div>
                         <p className="text-gray-600 mb-4">{plan.description}</p>
                         <ul className="space-y-2 mb-4">
                             {plan.features.map((feature, idx) => (
