@@ -248,10 +248,10 @@ const Home = () => {
                                     <div className="absolute -top-6 left-8 w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-xl shadow-lg">
                                         <FaQuoteLeft />
                                     </div>
-                                    <p className="text-gray-600 italic mb-6">"{testimonial.text}"</p>
+                                    <p className="text-gray-600 italic mb-6">"{testimonial.content}"</p>
                                     <div className="flex items-center gap-4 border-t pt-4 border-gray-100">
                                         <img
-                                            src={testimonial.image || 'https://via.placeholder.com/100?text=User'}
+                                            src={testimonial.avatar || 'https://via.placeholder.com/100?text=User'}
                                             alt={testimonial.name}
                                             className="w-12 h-12 rounded-full object-cover"
                                         />
@@ -298,11 +298,11 @@ const Home = () => {
                                     variant="primary"
                                     size="lg"
                                     className="
-        bg-white  px-8 shadow-xl
-        transition-all duration-300
-        hover:-translate-y-1 hover:shadow-2xl
-        group
-    "
+                                        bg-white  px-8 shadow-xl
+                                        transition-all duration-300
+                                        hover:-translate-y-1 hover:shadow-2xl
+                                        group
+                                        "
                                 >
                                     <span className="flex items-center gap-2">
                                         Get Free Consultation
