@@ -24,8 +24,8 @@ const Projects = () => {
         const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             project.description.toLowerCase().includes(searchTerm.toLowerCase());
         return matchesCategory && matchesSearch;
-    });
-
+    })
+        .sort((a, b) => b.id - a.id); // 🔥 Latest projects first
     // Pagination
     const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
     const indexOfLastProject = currentPage * projectsPerPage;
