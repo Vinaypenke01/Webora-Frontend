@@ -94,6 +94,8 @@ export const seoKeywords = {
             'DigitalCore',
             'DigitalCore India',
             'DigitalCore web development',
+            'digitalcore services',
+            'DigitalCore professional services',
         ],
     },
 

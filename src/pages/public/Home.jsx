@@ -47,9 +47,9 @@ const Home = () => {
         <div>
             {/* ... SEO and Hero Section ... */}
             <SEO
-                title="Webora - Modern Web Development Solutions"
-                description="Webora offers top-notch web development, app development, and UI/UX design services. Transform your digital presence with our expert solutions."
-                keywords={seoKeywords.home}
+                title="Best Web Development & Digital Marketing Agency India | DigitalCore"
+                description="DigitalCore offers top-notch web development, app development, and UI/UX design services. Transform your digital presence with our expert digitalcore services."
+                keywords={seoKeywords.getHomePageKeywords()}
                 schema={[
                     generateBreadcrumbSchema([
                         { name: 'Home', path: '/' }
@@ -58,17 +58,17 @@ const Home = () => {
                     {
                         "@context": "https://schema.org",
                         "@type": "ProfessionalService",
-                        "name": "Webora",
-                        "image": "https://webora.com/logo.png",
+                        "name": "DigitalCore",
+                        "image": "https://digitalcore.co.in/logo.png",
                         "description": "Professional web development agency specializing in React, Node.js, and modern web technologies.",
                         "address": {
                             "@type": "PostalAddress",
-                            "addressLocality": "San Francisco",
-                            "addressRegion": "CA",
-                            "postalCode": "94105",
-                            "addressCountry": "US"
+                            "addressLocality": "India",
+                            "addressRegion": "India",
+                            "postalCode": "20.5937, 78.9629",
+                            "addressCountry": "IN"
                         },
-                        "priceRange": "$$$"
+                        "priceRange": "$$"
                     }
                 ]}
             />
@@ -149,8 +149,8 @@ const Home = () => {
                 <div className="container-custom">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-primary font-semibold text-sm uppercase tracking-wider">Our Expertise</span>
-                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Comprehensive Digital Solutions</h2>
-                        <p className="text-gray-600">We offer a full spectrum of services to help your business thrive in the digital landscape.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Professional DigitalCore Services</h2>
+                        <p className="text-gray-600">We offer a full spectrum of DigitalCore services to help your business thrive in the digital landscape.</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
