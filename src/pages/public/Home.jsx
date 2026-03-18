@@ -22,12 +22,12 @@ const Home = () => {
     // FAQ data for homepage
     const faqs = [
         {
-            question: "What services does DigitalCore offer?",
-            answer: "DigitalCore offers comprehensive digital solutions including custom web development, mobile app development (iOS & Android), e-commerce solutions, UI/UX design, digital marketing, SEO services, and cloud deployment. We specialize in modern technologies like React, Node.js, and provide end-to-end development services for businesses across India."
+            question: "What services does Digital Core offer?",
+            answer: "Digital Core offers comprehensive digital solutions including custom web development, mobile app development (iOS & Android), e-commerce solutions, UI/UX design, digital marketing, SEO services, and cloud deployment. We specialize in modern technologies like React, Node.js, and provide end-to-end development services for businesses across India."
         },
         {
             question: "How much does web development cost in India?",
-            answer: "Web development costs vary based on project complexity, features, and timeline. At DigitalCore, we offer flexible pricing packages starting from affordable rates for small businesses to enterprise solutions. Contact us for a free consultation and custom quote tailored to your specific requirements."
+            answer: "Web development costs vary based on project complexity, features, and timeline. At Digital Core, we offer flexible pricing packages starting from affordable rates for small businesses to enterprise solutions. Contact us for a free consultation and custom quote tailored to your specific requirements."
         },
         {
             question: "How long does it take to build a website?",
@@ -35,7 +35,7 @@ const Home = () => {
         },
         {
             question: "Do you provide SEO services?",
-            answer: "Yes! DigitalCore offers comprehensive SEO services including keyword research, on-page optimization, technical SEO, link building, local SEO, and ongoing SEO maintenance. Our SEO experts use the latest 2026 strategies to help your website rank on the first page of Google and other search engines."
+            answer: "Yes! Digital Core offers comprehensive SEO services including keyword research, on-page optimization, technical SEO, link building, local SEO, and ongoing SEO maintenance. Our SEO experts use the latest 2026 strategies to help your website rank on the first page of Google and other search engines."
         },
         {
             question: "Do you offer support after website launch?",
@@ -47,8 +47,8 @@ const Home = () => {
         <div>
             {/* ... SEO and Hero Section ... */}
             <SEO
-                title="Best Web Development & Digital Marketing Agency India | DigitalCore"
-                description="DigitalCore offers top-notch web development, app development, and UI/UX design services. Transform your digital presence with our expert digitalcore services."
+                title="Best Web Development & Digital Marketing Agency India | Digital Core"
+                description="Digital Core offers top-notch web development, app development, and UI/UX design services. Transform your digital presence with our expert services."
                 keywords={seoKeywords.getHomePageKeywords()}
                 schema={[
                     generateBreadcrumbSchema([
@@ -58,7 +58,7 @@ const Home = () => {
                     {
                         "@context": "https://schema.org",
                         "@type": "ProfessionalService",
-                        "name": "DigitalCore",
+                        "name": "Digital Core",
                         "image": "https://digitalcore.co.in/logo.png",
                         "description": "Professional web development agency specializing in React, Node.js, and modern web technologies.",
                         "address": {
@@ -149,8 +149,8 @@ const Home = () => {
                 <div className="container-custom">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-primary font-semibold text-sm uppercase tracking-wider">Our Expertise</span>
-                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Professional DigitalCore Services</h2>
-                        <p className="text-gray-600">We offer a full spectrum of DigitalCore services to help your business thrive in the digital landscape.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Professional Digital Core Services</h2>
+                        <p className="text-gray-600">We offer a full spectrum of Digital Core services to help your business thrive in the digital landscape.</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

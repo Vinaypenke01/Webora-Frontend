@@ -91,11 +91,11 @@ export const seoKeywords = {
             'mobile app development guide',
         ],
         navigational: [
-            'DigitalCore',
-            'DigitalCore India',
-            'DigitalCore web development',
-            'digitalcore services',
-            'DigitalCore professional services',
+            'Digital Core',
+            'Digital Core India',
+            'Digital Core web development',
+            'digital core services',
+            'Digital Core professional services',
         ],
     },
 
@@ -124,7 +124,7 @@ export const seoKeywords = {
 
     getAboutPageKeywords() {
         return [
-            'about DigitalCore',
+            'about Digital Core',
             'digital agency team India',
             'web development company India',
             'best digital marketing agency',

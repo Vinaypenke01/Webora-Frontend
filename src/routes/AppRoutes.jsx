@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import { useAuth } from '../context/AuthContext';
 import ScrollToTop from '../components/ScrollToTop';
 import LoadingFallback from '../components/ui/LoadingFallback';
+import CookieBanner from '../components/ui/CookieBanner';
 
 // Layouts
 import PublicLayout from '../layouts/PublicLayout';
@@ -20,6 +21,8 @@ const Pricing = lazy(() => import('../pages/public/Pricing'));
 const Blog = lazy(() => import('../pages/public/Blog'));
 const BlogDetail = lazy(() => import('../pages/public/BlogDetail'));
 const CreateAdmin = lazy(() => import('../pages/CreateAdmin'));
+const TermsAndConditions = lazy(() => import('../pages/public/TermsAndConditions'));
+const PrivacyPolicy = lazy(() => import('../pages/public/PrivacyPolicy'));
 
 // Admin Pages
 const Login = lazy(() => import('../pages/admin/Login'));
@@ -32,6 +35,7 @@ const SiteSettings = lazy(() => import('../pages/admin/SiteSettings'));
 const ManagePricing = lazy(() => import('../pages/admin/ManagePricing'));
 const ManageTechnologies = lazy(() => import('../pages/admin/ManageTechnologies'));
 const ManageTestimonials = lazy(() => import('../pages/admin/ManageTestimonials'));
+const ManageConsents = lazy(() => import('../pages/admin/ManageConsents'));
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -63,7 +67,9 @@ const AppRoutes = () => {
                         <Route path="blog" element={<Blog />} />
                         <Route path="blog/:slug" element={<BlogDetail />} />
                         <Route path="create-admin" element={<CreateAdmin />} />
-                    </Route>
+                        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                </Route>
 
                     {/* Admin Login (not protected) */}
                     <Route path="/admin/login" element={<Login />} />
@@ -87,12 +93,14 @@ const AppRoutes = () => {
                         <Route path="pricing" element={<ManagePricing />} />
                         <Route path="technologies" element={<ManageTechnologies />} />
                         <Route path="testimonials" element={<ManageTestimonials />} />
+                        <Route path="consents" element={<ManageConsents />} />
                     </Route>
 
                     {/* 404 */}
                     <Route path="*" element={<div className="min-h-screen flex items-center justify-center"><h1>404 - Page Not Found</h1></div>} />
                 </Routes>
             </Suspense>
+            <CookieBanner />
         </BrowserRouter>
     );
 };

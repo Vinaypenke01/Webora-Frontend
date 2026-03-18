@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+// const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_URL = 'http://localhost:8000/api/v1';
 
 const STORAGE_KEYS = {
     AUTH_TOKEN: 'digitalcore_auth_token',
@@ -442,6 +443,32 @@ const api = {
     deleteTestimonial: async (id) => {
         await apiClient.delete(`/testimonials/${id}/`);
         return { success: true };
+    },
+
+    // Consents APIs
+    getConsents: async () => {
+        const response = await apiClient.get('/consents/');
+        return response.data;
+    },
+
+    createConsent: async (consent) => {
+        const response = await apiClient.post('/consents/', consent);
+        return response.data;
+    },
+
+    acceptConsent: async (id, data = {}) => {
+        const response = await apiClient.post(`/consents/${id}/accept/`, data);
+        return response.data;
+    },
+
+    exportConsentsCsv: async () => {
+        const response = await apiClient.get('/consents/export_csv/', { responseType: 'blob' });
+        return response.data;
+    },
+
+    downloadConsentDoc: async (id) => {
+        const response = await apiClient.get(`/consents/${id}/download_document/`, { responseType: 'blob' });
+        return response.data;
     },
 };
 

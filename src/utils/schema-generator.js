@@ -96,11 +96,11 @@ export const generateArticleSchema = (article) => {
         "image": article.image ? `https://digitalcore.co.in${article.image}` : "https://digitalcore.co.in/logo.png",
         "author": {
             "@type": "Person",
-            "name": article.author || "DigitalCore Team",
+            "name": article.author || "Digital Core Team",
         },
         "publisher": {
             "@type": "Organization",
-            "name": "DigitalCore",
+            "name": "Digital Core",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://digitalcore.co.in/logo.png",
@@ -126,7 +126,7 @@ export const generateLocalBusinessSchema = (businessInfo = {}) => {
     return {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "DigitalCore",
+        "name": "Digital Core",
         "image": "https://digitalcore.co.in/logo.png",
         "url": "https://digitalcore.co.in",
         "telephone": businessInfo.phone || "+91-XXXXXXXXXX",
@@ -168,7 +168,7 @@ export const generateServiceSchema = (service) => {
         "description": service.description || service.shortDescription,
         "provider": {
             "@type": "Organization",
-            "name": "DigitalCore",
+            "name": "Digital Core",
         },
         "areaServed": {
             "@type": "Country",
@@ -202,7 +202,7 @@ export const generatePersonSchema = (person) => {
         "description": person.bio || person.description,
         "worksFor": {
             "@type": "Organization",
-            "name": "DigitalCore",
+            "name": "Digital Core",
         },
     };
 };

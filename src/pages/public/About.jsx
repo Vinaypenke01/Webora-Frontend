@@ -12,7 +12,7 @@ const About = () => {
         "@type": "AboutPage",
         "mainEntity": {
             "@type": "Organization",
-            "name": "DigitalCore",
+            "name": "Digital Core",
             "description": "Professional digital agency providing web development, mobile apps, and digital marketing services",
             "foundingDate": "2020",
             "url": "https://digitalcore.co.in"
@@ -22,14 +22,14 @@ const About = () => {
     return (
         <div>
             <SEO
-                title="About DigitalCore - Leading Digital Agency | Our Story & Team"
-                description="Learn about DigitalCore's mission to empower businesses with innovative digital solutions. Meet our expert team of developers and designers dedicated to your success."
-                keywords="about DigitalCore, digital agency team, web development company, our story, company mission, expert developers"
+                title="About Digital Core - Leading Digital Agency | Our Story & Team"
+                description="Learn about Digital Core's mission to empower businesses with innovative digital solutions. Meet our expert team of developers and designers dedicated to your success."
+                keywords="about Digital Core, digital agency team, web development company, our story, company mission, expert developers"
                 canonicalUrl="https://digitalcore.co.in/about"
                 structuredData={structuredData}
             />
             <PageHeader
-                title="About DigitalCore"
+                title="About Digital Core"
                 subtitle="Learn about our story, mission, and the team behind your digital success"
                 breadcrumbs={[
                     { name: 'Home', path: '/' },
@@ -43,7 +43,7 @@ const About = () => {
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-center mb-8">Our Story</h2>
                         <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                            {settings.about?.story || 'Founded in 2020, DigitalCore has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.'}
+                            {settings.about?.story || 'Founded in 2020, Digital Core has been helping businesses establish and grow their online presence. We combine technical expertise with creative design to deliver exceptional digital solutions.'}
                         </p>
                         <p className="text-lg text-gray-700 leading-relaxed">
                             Our passion for web development and commitment to client success drives everything we do. We believe in building long-term partnerships with our clients, helping them achieve their business goals through innovative digital solutions.

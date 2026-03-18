@@ -6,6 +6,7 @@ const Button = ({
     type = 'button',
     disabled = false,
     loading = false,
+    isLoading = false,
     icon,
     iconPosition = 'left',
     className = '',
@@ -32,11 +33,11 @@ const Button = ({
         <button
             type={type}
             onClick={onClick}
-            disabled={disabled || loading}
+            disabled={disabled || loading || isLoading}
             className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
             {...props}
         >
-            {loading ? (
+            { (loading || isLoading) ? (
                 <>
                     <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />

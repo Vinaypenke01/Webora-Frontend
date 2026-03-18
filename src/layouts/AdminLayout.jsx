@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FaHome, FaProjectDiagram, FaCog, FaBlog, FaEnvelope, FaSignOutAlt, FaTools, FaDollarSign, FaCode, FaStar } from 'react-icons/fa';
+import { FaHome, FaProjectDiagram, FaCog, FaBlog, FaEnvelope, FaSignOutAlt, FaTools, FaDollarSign, FaCode, FaStar, FaFileSignature } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
 const AdminLayout = () => {
@@ -21,6 +21,7 @@ const AdminLayout = () => {
         { name: 'Pricing', path: '/admin/pricing', icon: FaDollarSign },
         { name: 'Technologies', path: '/admin/technologies', icon: FaCode },
         { name: 'Testimonials', path: '/admin/testimonials', icon: FaStar },
+        { name: 'Consents', path: '/admin/consents', icon: FaFileSignature },
         { name: 'Settings', path: '/admin/settings', icon: FaCog },
     ];
 
@@ -29,7 +30,7 @@ const AdminLayout = () => {
             {/* Sidebar */}
             <aside className="w-64 bg-gradient-to-b from-primary to-secondary text-white flex-shrink-0 flex flex-col">
                 <div className="p-6 flex-1 overflow-y-auto">
-                    <img src={logo} alt="DigitalCore" className="h-14 mb-8" />
+                    <img src={logo} alt="Digital Core" className="h-14 mb-8" />
 
                     <nav className="space-y-2">
                         {menuItems.map((item) => (

@@ -38,7 +38,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     {/* Company Info */}
                     <div>
-                        <img src={logo} alt="DigitalCore" className="h-16 mb-4" />
+                        <img src={logo} alt="Digital Core" className="h-16 mb-4" />
                         <p className="text-gray-200 mb-4">
                             {settings.tagline || 'Building Your Digital Presence'}
                         </p>
@@ -116,20 +116,20 @@ const Footer = () => {
                 <div className="border-t border-white/20 pt-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         <p className="text-gray-200 text-sm">
-                            © {new Date().getFullYear()} {settings.companyName || 'DigitalCore'}. All rights reserved.
+                            © {new Date().getFullYear()} {settings.companyName || 'Digital Core'}. All rights reserved.
                         </p>
                         <div className="flex space-x-6">
-                            <Link to="/create-admin" className="text-gray-200 hover:text-white text-sm transition-colors">
+                            {/* <Link to="/create-admin" className="text-gray-200 hover:text-white text-sm transition-colors">
                                 Create Admin
-                            </Link>
+                            </Link> */}
                             <Link to="/admin/login" className="text-gray-200 hover:text-white text-sm transition-colors">
                                 Admin Login
                             </Link>
-                            <Link to="#" className="text-gray-200 hover:text-white text-sm transition-colors">
+                            <Link to="/privacy-policy" className="text-gray-200 hover:text-white text-sm transition-colors">
                                 Privacy Policy
                             </Link>
-                            <Link to="#" className="text-gray-200 hover:text-white text-sm transition-colors">
-                                Terms of Service
+                            <Link to="/terms-and-conditions" className="text-gray-200 hover:text-white text-sm transition-colors">
+                                Terms & Conditions
                             </Link>
                         </div>
                     </div>

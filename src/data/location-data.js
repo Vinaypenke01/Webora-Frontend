@@ -3,8 +3,8 @@
 
 export const businessInfo = {
     // Basic Information
-    name: "DigitalCore",
-    legalName: "DigitalCore Solutions",
+    name: "Digital Core",
+    legalName: "Digital Core",
     slogan: "Building Your Digital Presence",
 
     // Contact Information

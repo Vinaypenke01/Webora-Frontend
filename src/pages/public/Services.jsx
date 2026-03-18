@@ -35,7 +35,7 @@ const Services = () => {
         <div>
             <SEO
                 title="Professional Web Development & Digital Marketing Services India | Top Solutions 2026"
-                description="Explore DigitalCore's comprehensive digital services: custom web development, mobile app development, e-commerce solutions, UI/UX design, SEO services, and cloud deployment. Professional solutions tailored to your business needs across India."
+                description="Explore Digital Core's comprehensive digital services: custom web development, mobile app development, e-commerce solutions, UI/UX design, SEO services, and cloud deployment. Professional solutions tailored to your business needs across India."
                 keywords={seoKeywords.getServicesPageKeywords()}
                 canonicalUrl="https://digitalcore.co.in/services"
                 structuredData={structuredData}

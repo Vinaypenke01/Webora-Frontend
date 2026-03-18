@@ -58,8 +58,8 @@ const Contact = () => {
     return (
         <div>
             <SEO
-                title="Contact DigitalCore - Best Web Development & Digital Marketing Agency India | Free Consultation"
-                description="Contact DigitalCore for professional web development, mobile app development, and digital marketing services in India. Get a free consultation and quote. Available Monday-Saturday. Transform your business online today!"
+                title="Contact Digital Core - Best Web Development & Digital Marketing Agency India | Free Consultation"
+                description="Contact Digital Core for professional web development, mobile app development, and digital marketing services in India. Get a free consultation and quote. Available Monday-Saturday. Transform your business online today!"
                 keywords={seoKeywords.getContactPageKeywords()}
                 canonicalUrl="https://digitalcore.co.in/contact"
                 structuredData={structuredData}
@@ -160,7 +160,7 @@ const Contact = () => {
                             allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
-                            title="DigitalCore Location"
+                            title="Digital Core Location"
                         ></iframe>
                     </div>
                 </div>
