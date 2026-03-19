@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import * as Icons from 'react-icons/fa';
+import * as SiIcons from 'react-icons/si';
 
 const TechAutoSlider = ({ technologies = [] }) => {
     // Filter active technologies and duplicate for seamless loop
@@ -72,7 +73,7 @@ const TechAutoSlider = ({ technologies = [] }) => {
                     <div className="tech-scroll-container w-full">
                         <div className="tech-infinite-scroll flex gap-8 w-max px-4">
                             {activeTechs.map((tech, index) => {
-                                const IconComponent = Icons[tech.icon] || Icons.FaCode;
+                                const IconComponent = Icons[tech.icon] || SiIcons[tech.icon] || Icons.FaCode;
 
                                 return (
                                     <div

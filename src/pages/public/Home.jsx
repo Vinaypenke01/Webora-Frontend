@@ -2,6 +2,20 @@ import { Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaArrowRight, FaCode, FaCheckCircle, FaProjectDiagram, FaQuoteLeft } from 'react-icons/fa';
 import * as Icons from 'react-icons/fa';
+import { 
+    SiReact, 
+    SiNodedotjs, 
+    SiMongodb, 
+    SiTailwindcss, 
+    SiJavascript, 
+    SiTypescript, 
+    SiHtml5, 
+    SiCss3, 
+    SiNextdotjs, 
+    SiExpress,
+    SiFigma,
+    SiVite
+} from 'react-icons/si';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import FAQ from '../../components/FAQ';
@@ -18,6 +32,26 @@ const Home = () => {
     const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
     const activeTestimonials = testimonials.filter(t => t.active).slice(0, 3);
     const activeTechnologies = technologies.filter(t => t.active);
+
+    const staticTechnologies = [
+        { id: 't1', name: 'React', icon: 'SiReact', color: '#61DAFB', active: true },
+        { id: 't2', name: 'Next.js', icon: 'SiNextdotjs', color: '#000000', active: true },
+        { id: 't3', name: 'Node.js', icon: 'SiNodedotjs', color: '#339933', active: true },
+        { id: 't4', name: 'TypeScript', icon: 'SiTypescript', color: '#3178C6', active: true },
+        { id: 't5', name: 'Tailwind CSS', icon: 'SiTailwindcss', color: '#06B6D4', active: true },
+        { id: 't6', name: 'MongoDB', icon: 'SiMongodb', color: '#47A248', active: true },
+        { id: 't7', name: 'JavaScript', icon: 'SiJavascript', color: '#F7DF1E', active: true },
+        { id: 't8', name: 'Express', icon: 'SiExpress', color: '#000000', active: true },
+        { id: 't9', name: 'HTML5', icon: 'SiHtml5', color: '#E34F26', active: true },
+        { id: 't10', name: 'CSS3', icon: 'SiCss3', color: '#1572B6', active: true },
+        { id: 't11', name: 'Vite', icon: 'SiVite', color: '#646CFF', active: true },
+        { id: 't12', name: 'Figma', icon: 'SiFigma', color: '#F24E1E', active: true },
+        { id: 't13', name: 'Python', icon: 'SiPython', color: '#3776AB', active: true },
+        { id: 't14', name: 'Django', icon: 'SiDjango', color: '#092E20', active: true },
+        { id: 't15', name: 'DRF', icon: 'SiDjango', color: '#092E20', active: true },
+        { id: 't16', name: 'PostgreSQL', icon: 'SiPostgresql', color: '#4169E1', active: true },
+        { id: 't17', name: 'SQL', icon: 'FaDatabase', color: '#4479A1', active: true },
+    ];
 
     // FAQ data for homepage
     const faqs = [
@@ -225,11 +259,13 @@ const Home = () => {
             {/* Technologies Section */}
             <section className="py-16 bg-white overflow-hidden">
                 <div className="container-custom text-center mb-10">
-                    <p className="text-gray-500 font-medium">Powered by modern technologies</p>
+                    <span className="text-primary font-semibold text-sm uppercase tracking-wider block mb-2">Our Tech Stack</span>
+                    <h2 className="text-3xl font-bold mb-4">Technologies We Use</h2>
+                    <p className="text-gray-500 font-medium">Empowering businesses with modern and scalable web solutions</p>
                 </div>
 
                 <Suspense fallback={<div className="h-32 flex items-center justify-center bg-gray-50"><div className="animate-pulse bg-gray-200 h-16 w-3/4 rounded"></div></div>}>
-                    <TechAutoSlider technologies={activeTechnologies} />
+                    <TechAutoSlider technologies={staticTechnologies} />
                 </Suspense>
             </section>
 
