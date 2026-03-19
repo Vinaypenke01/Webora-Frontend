@@ -43,10 +43,10 @@ const Pricing = () => {
                                     <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                                     <p className="text-gray-600 mb-4">{plan.description}</p>
                                     <div className="text-4xl font-bold gradient-text mb-2">
-                                        ₹{plan.price}
+                                        ₹{plan.price}/Year
                                     </div>
                                     {plan.price !== 'Let\'s Talk' && (
-                                        <p className="text-sm text-gray-600">One-time payment</p>
+                                        <p className="text-sm text-gray-600 font-medium tracking-wide bg-gray-100/50 inline-block px-3 py-1 rounded-full uppercase text-xs">Billed annually</p>
                                     )}
                                 </div>
 
@@ -71,6 +71,10 @@ const Pricing = () => {
                             </Card>
                         ))}
                     </div>
+
+                    <p className="mt-8 text-center text-gray-500 text-sm md:text-base animate-fade-in italic">
+                        * Note: Domain charges were not included in any of the above mentioned plans.
+                    </p>
                 </div>
             </section>
 
