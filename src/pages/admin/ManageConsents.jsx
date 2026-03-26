@@ -15,6 +15,7 @@ const ManageConsents = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [actionLoading, setActionLoading] = useState(null);
     const [downloadLoading, setDownloadLoading] = useState(null);
+    const [resendLoading, setResendLoading] = useState(null);
     const [tempDates, setTempDates] = useState({}); // To track date inputs before acceptance
 
     const fetchConsents = async () => {
@@ -60,6 +61,20 @@ const ManageConsents = () => {
             alert('Failed to accept consent.');
         } finally {
             setActionLoading(null);
+        }
+    };
+
+    const handleResend = async (id) => {
+        try {
+            setResendLoading(id);
+            await api.resendAgreement(id);
+            alert('Agreement email resent successfully!');
+            fetchConsents();
+        } catch (err) {
+            console.error('Error resending agreement:', err);
+            alert('Failed to resend agreement email. Please check your SMTP settings.');
+        } finally {
+            setResendLoading(null);
         }
     };
 
@@ -166,6 +181,15 @@ const ManageConsents = () => {
                                         }`}>
                                             {consent.status}
                                         </span>
+                                        {consent.status === 'ACCEPTED' && (
+                                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                                consent.is_final_email_sent 
+                                                    ? 'bg-blue-50 text-blue-600 border border-blue-100' 
+                                                    : 'bg-red-50 text-red-600 border border-red-100'
+                                            }`}>
+                                                {consent.is_final_email_sent ? 'EMAIL SENT' : 'EMAIL FAILED'}
+                                            </span>
+                                        )}
                                     </div>
                                     <p className="text-gray-600 font-medium">{consent.business_name}</p>
                                     <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-500">
@@ -216,13 +240,24 @@ const ManageConsents = () => {
                                             <FaCheck /> Accept Consent
                                         </Button>
                                     ) : (
-                                        <div className="text-right">
-                                            <div className="flex items-center gap-1.5 text-sm text-green-600 font-medium">
-                                                <FaUserCheck /> Accepted by {consent.accepted_by_details?.username || 'Admin'}
+                                        <div className="flex flex-col items-end gap-2">
+                                            <div className="text-right">
+                                                <div className="flex items-center gap-1.5 text-sm text-green-600 font-medium">
+                                                    <FaUserCheck /> Accepted by {consent.accepted_by_details?.username || 'Admin'}
+                                                </div>
+                                                <div className="text-xs text-gray-400">
+                                                    {new Date(consent.action_date).toLocaleString()}
+                                                </div>
                                             </div>
-                                            <div className="text-xs text-gray-400">
-                                                {new Date(consent.action_date).toLocaleString()}
-                                            </div>
+                                            <Button 
+                                                variant="outline" 
+                                                size="xs"
+                                                className="text-[10px] py-1 h-auto"
+                                                onClick={() => handleResend(consent.id)}
+                                                isLoading={resendLoading === consent.id}
+                                            >
+                                                Resend Email
+                                            </Button>
                                         </div>
                                     )}
                                 </div>

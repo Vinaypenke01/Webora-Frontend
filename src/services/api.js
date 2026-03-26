@@ -460,6 +460,11 @@ const api = {
         const response = await apiClient.post(`/consents/${id}/accept/`, data);
         return response.data;
     },
+    
+    resendAgreement: async (id) => {
+        const response = await apiClient.post(`/consents/${id}/resend_agreement/`);
+        return response.data;
+    },
 
     exportConsentsCsv: async () => {
         const response = await apiClient.get('/consents/export_csv/', { responseType: 'blob' });

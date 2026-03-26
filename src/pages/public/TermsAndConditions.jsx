@@ -33,40 +33,57 @@ const TermsAndConditions = () => {
 
                 <div className="bg-white rounded-2xl shadow-sm border p-8 md:p-12 space-y-8">
                     <section>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            By accessing or using Digital Core's services, you agree to be bound by these Terms and Conditions. 
-                            If you do not agree with any part of these terms, you must not use our services. We reserve the right 
-                            to modify these terms at any time, and your continued use of our services signifies your acceptance 
-                            of any updated terms.
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">1. DEFINITIONS</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            <strong>"Services"</strong> shall mean the design, development, deployment, and maintenance of the website. 
+                            <strong>"Deliverables"</strong> shall mean all outputs provided by the Freelancer to the Client. 
+                            <strong>"Maintenance Period"</strong> shall mean the period of one (1) year commencing from the date of deployment.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Description of Services</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            Digital Core provides digital agency services, including but not limited to web development, 
-                            mobile app design, UI/UX design, and digital marketing. The specific scope of work for each project 
-                            will be detailed in a separate Statement of Work (SOW).
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">2. SCOPE OF SERVICES</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            2.1 The Freelancer (Digital Core) agrees to provide website design and development services as agreed upon. 
+                            2.2 Any services not expressly included in the initial agreement shall be deemed "Additional Services" and may incur additional costs.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Data Privacy & Consent</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            We value your privacy. By providing your information through our consent form, you authorize us to 
-                            collect and store your name, email, mobile number, and business details for service-related communications 
-                            and administrative purposes. We will not share your data with third parties without your explicit consent, 
-                            except as required by law.
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">3. PROJECT DELIVERY AND ACCEPTANCE</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            3.1 The Deliverables shall be deemed accepted by the Client upon deployment to the live server or upon written confirmation, whichever occurs first. 
+                            3.2 Any objections or revision requests must be communicated in writing prior to final deployment.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Client Responsibilities</h2>
-                        <p className="text-gray-600 leading-relaxed">
-                            Clients are responsible for providing accurate information and timely feedback requested by Digital Core 
-                            to ensure the successful delivery of projects. Any delays caused by the client may impact 
-                            project timelines and costs.
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">4. MAINTENANCE SERVICES</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            4.1 Digital Core provides one (1) year of maintenance starting from the actual deployment date. 
+                            4.2 Maintenance includes: Critical bug fixes, minor content updates, and small UI adjustments to ensure optimal performance.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">5. CHANGE REQUEST POLICY</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            5.1 Clients are entitled to two (2) change requests per month during the maintenance period. 
+                            5.2 These requests must be minor modifications only. Major feature additions are outside the scope of standard maintenance.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">6. TURNAROUND TIME</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            6.1 We strive for excellence and efficiency. The standard turnaround time for minor change requests or bug fixes is 2 to 5 business days.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">7. DATA PRIVACY & CONSENT</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            By providing your information through our formal consent form, you authorize Digital Core to collect and store your business details for administrative and service-related purposes. We are committed to protecting your data and using it only to fulfill our contractual obligations.
                         </p>
                     </section>
 
