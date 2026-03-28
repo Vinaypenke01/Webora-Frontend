@@ -81,7 +81,43 @@ const TermsAndConditions = () => {
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">7. DATA PRIVACY & CONSENT</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">7. INTELLECTUAL PROPERTY</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            7.1 Upon full and final payment, all rights, title, and interest in the Deliverables shall be transferred to the Client. 
+                            7.2 Digital Core retains the right to use the Deliverables in their portfolio for promotional purposes.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">8. CONFIDENTIALITY</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            8.1 Both parties agree to keep all project-related information, business secrets, and personal data confidential and not disclose it to any third party without prior written consent.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">9. LIMITATION OF LIABILITY</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            9.1 In no event shall Digital Core be liable for any indirect, special, or consequential damages. Total liability under this Agreement shall not exceed the fees paid for the specific services.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">10. TERMINATION</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            10.1 Either party may terminate this Agreement with 15 days' written notice. 10.2 Upon termination, the Client shall pay for all work completed up to the termination date.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">11. GOVERNING LAW</h2>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                            11.1 This Agreement shall be governed by and construed in accordance with the laws of India.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">12. DATA PRIVACY & CONSENT</h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
                             By providing your information through our formal consent form, you authorize Digital Core to collect and store your business details for administrative and service-related purposes. We are committed to protecting your data and using it only to fulfill our contractual obligations.
                         </p>
