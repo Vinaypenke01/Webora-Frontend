@@ -68,7 +68,7 @@ const TermsAndConditions = () => {
                     <section>
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">5. CHANGE REQUEST POLICY</h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            5.1 Clients are entitled to two (2) change requests per month during the maintenance period. 
+                            5.1 Clients are entitled to one (1) change request per month during the maintenance period. 
                             5.2 These requests must be minor modifications only. Major feature additions are outside the scope of standard maintenance.
                         </p>
                     </section>

@@ -17,6 +17,7 @@ const ManageConsents = () => {
     const [downloadLoading, setDownloadLoading] = useState(null);
     const [resendLoading, setResendLoading] = useState(null);
     const [tempDates, setTempDates] = useState({}); // To track date inputs before acceptance
+    const [tempDurations, setTempDurations] = useState({}); // To track duration inputs before acceptance
 
     const fetchConsents = async () => {
         try {
@@ -47,6 +48,8 @@ const ManageConsents = () => {
 
     const handleAccept = async (id) => {
         const deployment_date = tempDates[id];
+        const maintenance_duration_months = tempDurations[id] || 12;
+
         if (!deployment_date) {
             alert('Please select an Actual Deployment Date before accepting.');
             return;
@@ -54,7 +57,10 @@ const ManageConsents = () => {
 
         try {
             setActionLoading(id);
-            await api.acceptConsent(id, { deployment_date });
+            await api.acceptConsent(id, { 
+                deployment_date, 
+                maintenance_duration_months 
+            });
             await fetchConsents();
         } catch (err) {
             console.error('Error accepting consent:', err);
@@ -198,25 +204,46 @@ const ManageConsents = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex-1 flex items-center gap-2">
-                                    <input 
-                                        type="date" 
-                                        className={`text-xs border rounded px-2 py-1 outline-none transition-all ${
-                                            !consent.deployment_date ? 'border-orange-300 ring-2 ring-orange-50 focus:ring-orange-200' : 'border-gray-200'
-                                        }`}
-                                        defaultValue={consent.deployment_date ? consent.deployment_date.split('T')[0] : (tempDates[consent.id] || '')}
-                                        disabled={consent.status === 'ACCEPTED'}
-                                        onChange={(e) => {
-                                            const date = e.target.value;
-                                            if (consent.status === 'ACCEPTED') {
-                                                handleUpdateConsent(consent.id, { deployment_date: date });
-                                            } else {
-                                                setTempDates(prev => ({ ...prev, [consent.id]: date }));
-                                            }
-                                        }}
-                                        title="Actual Deployment Date"
-                                    />
-                                    <span className="text-xs text-gray-400">Deployment</span>
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <div className="flex items-center gap-2">
+                                        <input 
+                                            type="date" 
+                                            className={`text-xs border rounded px-2 py-1 outline-none transition-all ${
+                                                !consent.deployment_date ? 'border-orange-300 ring-2 ring-orange-50 focus:ring-orange-200' : 'border-gray-200'
+                                            }`}
+                                            defaultValue={consent.deployment_date ? consent.deployment_date.split('T')[0] : (tempDates[consent.id] || '')}
+                                            disabled={consent.status === 'ACCEPTED'}
+                                            onChange={(e) => {
+                                                const date = e.target.value;
+                                                if (consent.status === 'ACCEPTED') {
+                                                    handleUpdateConsent(consent.id, { deployment_date: date });
+                                                } else {
+                                                    setTempDates(prev => ({ ...prev, [consent.id]: date }));
+                                                }
+                                            }}
+                                            title="Actual Deployment Date"
+                                        />
+                                        <span className="text-[10px] text-gray-400">Deployment</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <input 
+                                            type="number" 
+                                            placeholder="12"
+                                            className="text-xs border rounded px-2 py-1 w-16 outline-none border-gray-200"
+                                            defaultValue={consent.maintenance_duration_months || (tempDurations[consent.id] || 12)}
+                                            disabled={consent.status === 'ACCEPTED'}
+                                            onChange={(e) => {
+                                                const duration = e.target.value;
+                                                if (consent.status === 'ACCEPTED') {
+                                                    handleUpdateConsent(consent.id, { maintenance_duration_months: duration });
+                                                } else {
+                                                    setTempDurations(prev => ({ ...prev, [consent.id]: duration }));
+                                                }
+                                            }}
+                                            title="Maintenance Duration (Months)"
+                                        />
+                                        <span className="text-[10px] text-gray-400">Duration (Months)</span>
+                                    </div>
                                 </div>
 
                                 <div className="flex items-center gap-3 shrink-0">
